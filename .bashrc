@@ -98,6 +98,8 @@ alias pull='git fetch --tags && pullmerge master -m "merging from master branch"
 alias pullr='git fetch --tags && pullmerge master --rebase'
 alias hpr='git push && hub pull-request -m "$(git log -1 --pretty=%B)" | pbcopy && pbpaste'
 alias hprm='hub pull-request -m'
+alias pullrc='cd ~/repos/bashrc && git pull origin master && cd -'
+alias pushrc='cd ~/repos/bashrc && git pull origin master && git commit -a -m "commit" && git push origin master && cd -'
 # Usage: git diff $(mb)..head
 alias mb='git merge-base master head'
 
