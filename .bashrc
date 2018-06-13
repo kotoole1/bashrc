@@ -2,7 +2,7 @@
 
 alias rc='. ~/.bashrc'
 alias rsc='. ~/.bashrc && cd ~/repos/newton && source ~/repos/newton/buildenv.bash > /dev/null && deactivate && cd -'
-alias erc='open -a Sublime\ Text\ 2 ~/.bashrc'
+alias erc='open -a Sublime\ Text\ 2 ~/repos/bashrc/.bashrc'
 
 alias wt='open -a /applications/WebStorm.app'
 alias ecl='open -a /Users/kotoole/eclipse/java-neon/Eclipse.app'
@@ -53,6 +53,7 @@ alias gh='git rev-parse HEAD | pbcopy && git rev-parse HEAD'
 alias gcl='git clean -i'
 alias gc='git clone'
 alias gcm='git commit -a -m'
+alias gcmp='git commit -a -m "commit" && git push origin master'
 alias gcmi='git commit -m'
 alias gca='git commit -a --amend -m'
 alias gcai='git commit --amend -m'
