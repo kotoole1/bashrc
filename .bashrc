@@ -33,7 +33,7 @@ alias cdoj='cd ~/repos/onsync/onsync-js'
 alias cdoo='cd ~/repos/onsync/Onsync'
 alias cdop='cd ~/Onsync/Playground/'
 alias cdm='cd ~/repos/mark-file-system/'
-alias cdu='cd ~/Documents/Harvard/Unix/'
+alias cdt='cd ~/repos/TypeScript'
 
 alias gbr='git branch'
 alias gb='cur=$(git rev-parse --abbrev-ref HEAD); prev=$(git rev-parse --abbrev-ref @{-1}); git for-each-ref --sort=committerdate refs/heads/ --format="%(color:reset)  %(refname:short)|%(color:black bold)%(committerdate:relative)%(color:reset)" | column -ts"|" | sed -e "s,  ${cur} ,$(tput setaf 2)$(tput bold)* ${cur} $(tput sgr0)," | sed -e "s,  ${prev} ,$(tput setaf 3)$(tput bold)  ${prev} $(tput sgr0),";'
