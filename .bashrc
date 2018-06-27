@@ -100,7 +100,7 @@ alias pullr='git fetch --tags && pullmerge master --rebase'
 alias hpr='git push && hub pull-request -m "$(git log -1 --pretty=%B)" | pbcopy && pbpaste'
 alias hprm='hub pull-request -m'
 alias pullrc='cd ~/repos/bashrc && git pull origin master && cd -'
-alias pushrc='cd ~/repos/bashrc && git pull origin master && git commit -a -m "commit" && git push origin master && cd -'
+alias pushrc='cd ~/repos/bashrc && git commit -a -m "commit" && git pull origin master && git push origin master && cd -'
 # Usage: git diff $(mb)..head
 alias mb='git merge-base master head'
 
@@ -341,7 +341,7 @@ function vvx()
 # Document extractor
 function restore()
 {
-    restoreDump.py "$1" --remap "btadmin@onshape.com" -m -e && grzc && startbelcad
+    restoreDump.py "$1" --remap "kotoole@onshape.com" -m -e && grzc && gradle
 }
 
 function giff()
