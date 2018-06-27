@@ -21,7 +21,7 @@ alias la='ls -a'
 alias sl='ls'
 alias ll='ls -l'
 alias cdn='cd ~/repos/newton'
-alias cds='cd ~/stage'
+alias cds='cd ~/stage' 
 alias cdf='cd ~/repos/newton/project/web/WEB-INF/BelScript/onshape/std/'
 alias cdp='cd ~/repos/newton/project/'
 alias cde='cd ~/repos/elecanisms'
@@ -34,6 +34,7 @@ alias cdoo='cd ~/repos/onsync/Onsync'
 alias cdop='cd ~/Onsync/Playground/'
 alias cdm='cd ~/repos/mark-file-system/'
 alias cdt='cd ~/repos/TypeScript'
+alias cdr='cd ~/repos/roll'
 
 alias gbr='git branch'
 alias gb='cur=$(git rev-parse --abbrev-ref HEAD); prev=$(git rev-parse --abbrev-ref @{-1}); git for-each-ref --sort=committerdate refs/heads/ --format="%(color:reset)  %(refname:short)|%(color:black bold)%(committerdate:relative)%(color:reset)" | column -ts"|" | sed -e "s,  ${cur} ,$(tput setaf 2)$(tput bold)* ${cur} $(tput sgr0)," | sed -e "s,  ${prev} ,$(tput setaf 3)$(tput bold)  ${prev} $(tput sgr0),";'
@@ -247,6 +248,7 @@ alias workoff='deactivate'
 
 alias nt='terminal-notifier -title "Success" -message "Command complete" || terminal-notifier -title "Failure" -message ""'
 
+# Handibot
 alias hb='sudo nmap -sn 192.168.0.0/24 | grep Murata -B 2' #FC:DB:B3:A8:F5:45
 
 function pwrite()
