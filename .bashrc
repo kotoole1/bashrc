@@ -152,6 +152,7 @@ alias grtes='grunt eslint:fixAll'
 alias grtts='grunt tslint:fix'
 alias grtxx='grunt xgettext --fix'
 alias grtfx='grunt tslint:fix && grunt eslint:fixAll && grunt xgettext --fix && tidy'
+alias kill00="lsof -i :8000 | grep LISTEN | sed 's/node[ ]*\([0-9]*\).*/\1/' | xargs kill"
 alias pt00='ptor --target=http://localhost.dev.onshape.com:8000'
 alias ptoc='ptor --target=https://demo-c.dev.onshape.com/'
 alias grtc='grunt tests:configurations'
@@ -339,7 +340,7 @@ function vvx()
 # Document extractor
 function restore()
 {
-    restoreDump.py "$1" --remap "kotoole@onshape.com" -m -e && grzc && gradle
+    restoreDump.py "$1" --remap "kotoole@onshape.com" -m -e && grzc && gradle && startbelcad
 }
 
 function giff()
