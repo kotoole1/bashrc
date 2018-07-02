@@ -223,6 +223,8 @@ alias fasum='umount -f ~/Documents/Harvard/Unix/nice-fas-mount/'
 alias sublfas='subl /Users/kotoole/Documents/Harvard/Unix/nice-fas-mount/nfs/home/k/s/kso968/'
 alias cdfas='cd /Users/kotoole/Documents/Harvard/Unix/nice-fas-mount/nfs/home/k/s/kso968/'
 
+alias shrr='subl /Applications/HyperRogue.app/Contents/MacOS/hyperrogue.log'
+
 # # sed replacement for BEL-8983
 # alias seddo="find . -type f -name '*' -exec sed -i.sed.bak -e 's/matepoint/mateconnector/g' -e 's/matePoint/mateConnector/g' -e 's/Matepoint/Mateconnector/g' -e 's/MatePoint/MateConnector/g' -e 's/MATEPOINT/MATECONNECTOR/g' -e 's/mate point/mate connector/g' -e 's/mate Point/mate Connector/g' -e 's/Mate point/Mate connector/g' -e 's/Mate Point/Mate Connector/g' -e 's/MATE POINT/MATE CONNECTOR/g' -e 's/mate_point/mate_connector/g' -e 's/mate_Point/mate_Connector/g' -e 's/Mate_point/Mate_connector/g' -e 's/Mate_Point/Mate_Connector/g' -e 's/MATE_POINT/MATE_CONNECTOR/g' {} \;"
 # alias sedwl="find . -type f \( -name '*.java' -o -name '*.h' -o -name '*.po' -o -name '*.pot' -o -name '*.js' -o -name '*.cpp' -o -name '*.fs' -o -name '*.properties' -o -name '*.hbs' \) -exec sed -i.sed.bak -e 's/matepoint/mateconnector/g' -e 's/matePoint/mateConnector/g' -e 's/Matepoint/Mateconnector/g' -e 's/MatePoint/MateConnector/g' -e 's/MATEPOINT/MATECONNECTOR/g' -e 's/mate point/mate connector/g' -e 's/mate Point/mate Connector/g' -e 's/Mate point/Mate connector/g' -e 's/Mate Point/Mate Connector/g' -e 's/MATE POINT/MATE CONNECTOR/g' -e 's/mate_point/mate_connector/g' -e 's/mate_Point/mate_Connector/g' -e 's/Mate_point/Mate_connector/g' -e 's/Mate_Point/Mate_Connector/g' -e 's/MATE_POINT/MATE_CONNECTOR/g' {} \;"
@@ -419,6 +421,12 @@ function ggraft()
 
     # re-apply any changes not added
     git stash apply
+}
+
+# iterm badges
+function iterm2_print_user_vars()
+{
+  iterm2_set_user_var dockerStatus $(checkServices -s rabbitmq | sed s/"Checking Rabbit MQ Server.. "//)
 }
 
 man() {
