@@ -375,6 +375,11 @@ function pfarm()
         git branch -m "${branch}-uitest"
         git push --set-upstream origin "${branch}-uitest" -f
     fi
+    if [[ "$1" == "-l" ]]; then
+        git branch -m "${branch}-mocha_longtest_precommit"
+        git push --set-upstream origin "${branch}-mocha_longtest_precommit" -f
+    fi
+
     git branch -m $branch
     git branch --unset-upstream
 }
