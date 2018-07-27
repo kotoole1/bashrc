@@ -492,6 +492,7 @@ export BTI_DISABLE_HEARTBEATS=1
 # export 
 export JAVA_MAX_MEMORY_MB=4096
 export VIRTUAL_ENV_DISABLE_PROMPT=1
+export USE_JAVA10=0
 
 ulimit -c unlimited
 
