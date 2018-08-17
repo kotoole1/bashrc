@@ -137,7 +137,7 @@ alias xcc='buildCppServer'
 alias dumps='open /Applications/Utilities/Console.app'
 
 alias grt='grunt'
-alias grsv='grunt serve --webpack'
+alias grsv="lsof -i :8000 | grep LISTEN | sed 's/node[ ]*\([0-9]*\).*/\1/' | xargs kill && grunt serve --webpack"
 alias grsvv='grunt serve'
 alias grqs='grunt quickServe'
 alias grtpc='grunt precommit --stacktrace'
@@ -492,7 +492,6 @@ export BTI_DISABLE_HEARTBEATS=1
 # export 
 export JAVA_MAX_MEMORY_MB=4096
 export VIRTUAL_ENV_DISABLE_PROMPT=1
-export USE_JAVA10=0
 
 ulimit -c unlimited
 
