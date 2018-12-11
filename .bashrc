@@ -2,7 +2,7 @@
 
 alias rc='. ~/.bashrc'
 alias rsc='. ~/.bashrc && cd ~/repos/newton && source ~/repos/newton/buildenv.bash > /dev/null && deactivate && cd -'
-alias erc='open -a Sublime\ Text\ 2 ~/repos/bashrc/.bashrc'
+alias erc='subl ~/repos/bashrc/.bashrc'
 
 alias wt='open -a /applications/WebStorm.app'
 alias ecl='open -a /Users/kotoole/eclipse/jee-photon/Eclipse.app'
@@ -108,7 +108,7 @@ alias gr='gradle'
 alias grst='gradle start'
 alias grd='grdlu start'
 alias grdj='grdlu java gen start'
-alias grdjs='grdlu js buildWebSvcJs start'
+alias grdjs='grdlu gen js buildWebSvcJs start'
 alias grdjjs='grdlu java gen js buildWebSvcJs start'
 alias sbc='startbelcad'
 alias spbc='stopbelcad'
@@ -130,6 +130,7 @@ alias grtsz='grunt generateSerializables'
 alias cni='cleanNodeIconv'
 alias rrab='brew services restart rabbitmq'
 alias drab='docker run -d --rm --name rabbitmq --hostname localhost -p 4369:4369 -p 5671:5671 -p 5672:5672 -p 15672:15672 -p 25672:25672 rabbitmq:3.7-management-alpine'
+alias ddraw='startDrawingDocker'
 alias cm='cp -r ~/stage/test/results/* ~/temp/cachedTestResults/; cleanMost'
 alias ce='cp -r ~/stage/test/results/* ~/temp/cachedTestResults/; cleanEverything'
 
@@ -492,8 +493,6 @@ export BTI_DISABLE_HEARTBEATS=1
 # export 
 export JAVA_MAX_MEMORY_MB=4096
 export VIRTUAL_ENV_DISABLE_PROMPT=1
-
-ulimit -c unlimited
 
 # Harvard JVM
 # export SIMPLE_JAVA=~/Documents/Harvard/JVM/SimpleJava/simplejava-assignment1
