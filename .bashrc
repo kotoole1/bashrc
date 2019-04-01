@@ -139,8 +139,9 @@ alias dumps='open /Applications/Utilities/Console.app'
 
 alias grt='grunt'
 alias grsv="lsof -i :8000 | grep LISTEN | sed 's/node[ ]*\([0-9]*\).*/\1/' | xargs kill && grunt serve --webpack"
-alias grsvv='grunt serve'
 alias grqs='grunt quickServe'
+alias grqsc='PROXY_TARGET_HOST=https://demo-c.dev.onshape.com grunt quickServe --webpack'
+alias grqss='PROXY_TARGET_HOST=https://staging.dev.onshape.com grunt quickServe --webpack'
 alias grtpc='grunt precommit --stacktrace'
 alias grttd='grunt tidy || grunt tidy'
 alias grtc='grunt copy'
@@ -193,7 +194,7 @@ alias day='date +"%d-%m-%Y"'
 alias tf='tail -f'
 alias tfb='tail -f ~/stage/WebSvc/logs/btserver.log'
 alias sbb='subl /Users/kotoole/stage/WebSvc/logs/btserver.log'
-alias sup='open -a Sublime\ Text\ 2 ~/stage/WebSvc/logs/upgrade.log'
+alias sup='subl ~/stage/WebSvc/logs/upgrade.log'
 alias lgf='cat ~/stage/WebSvc/logs/btserver.log | grep -i'
 alias fhs='find . -type f -name'
 alias fh='find . -type f -iname'
@@ -282,6 +283,7 @@ function gdlr()
 
 function gdllr()
 {
+
     for b; do
         if [[ ! `git branch --contains ${b} --list master` ]]
         then
@@ -304,6 +306,65 @@ function gdllr()
     done
 }
 
+function cleanBranches()
+{
+    if [[ "$1" == "--dry" ]]
+    then
+        echo "Dry run results:"
+    fi
+
+    for branch in $(git for-each-ref --sort=committerdate refs/heads/ --format='%(refname:short)')
+    do
+        deleteBranch "$branch" "$1"
+    done
+}
+
+# Takes 1 branch name, and optionally, --dry
+function deleteBranch()
+{
+    if [[ "$1" == "master" ]]
+    then
+        return
+    fi
+
+    if [[ $1 =~ rel-[1-9\\.]* ]]
+    then
+        echo -e "${YELLOW}Skip ${1}, which looks like a release branch${NORMAL}"
+        return
+    fi
+
+    if [[ $1 =~ heads/* ]]
+    then
+        echo -e "${YELLOW}Skip ${1}, doesn't look like a normal branch${NORMAL}"
+        return
+    fi
+
+    if [[ ! `git branch --contains ${1} --list master` ]]
+    then
+        echo -e "${YELLOW}Skip ${1}, which was not contained in master${NORMAL}"
+        return
+    fi
+
+    if [[ "$2" != "--dry" ]]
+    then
+        git branch -D ${1}
+        if [ `git branch -r --list "origin/${1}-uitest"` ]
+        then
+            git push origin --delete ${1}-uitest
+        fi
+        if [ `git branch -r --list "origin/${1}-precommit"` ]
+        then
+            git push origin --delete ${1}-precommit
+        fi
+        if [ `git branch -r --list "origin/${1}"` ]
+        then
+            git push origin --delete ${1}
+        fi
+    else
+        echo -e "${RED}Delete ${1}, and associated branches and precommit branches on origin${NORMAL}"
+    fi
+}
+
 # find filename and copy results
 function ffc()
 {
@@ -312,15 +373,6 @@ function ffc()
 }
 
 alias ag='ag -S'
-# function agg()
-# {
-#     ag $@ | cut -c1-300 -R
-# }
-
-# function agl()
-# {
-#     ag -l $@
-# }
 
 function af()
 {
@@ -368,11 +420,11 @@ function glgk()
 function pfarm()
 {
     branch=$(git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/')
-    if [[ "$1" != "-u" ]]; then
+    if [[ "$1" == "-p" ]] || [[ "$1" == "" ]]; then
         git branch -m "${branch}-precommit"
         git push --set-upstream origin "${branch}-precommit" -f
     fi
-    if [[ "$1" != "-p" ]]; then
+    if [[ "$1" == "-u" ]] || [[ "$1" == "" ]]; then
         git branch -m "${branch}-uitest"
         git push --set-upstream origin "${branch}-uitest" -f
     fi
@@ -493,6 +545,7 @@ export BTI_DISABLE_HEARTBEATS=1
 # export 
 export JAVA_MAX_MEMORY_MB=4096
 export VIRTUAL_ENV_DISABLE_PROMPT=1
+export DOCKER_SERVICES=mongo,rabbit,memcache
 
 # Harvard JVM
 # export SIMPLE_JAVA=~/Documents/Harvard/JVM/SimpleJava/simplejava-assignment1
