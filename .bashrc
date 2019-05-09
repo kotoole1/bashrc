@@ -142,7 +142,7 @@ alias grsv="lsof -i :8000 | grep LISTEN | sed 's/node[ ]*\([0-9]*\).*/\1/' | xar
 alias grqs='grunt quickServe'
 alias grqsc='PROXY_TARGET_HOST=https://demo-c.dev.onshape.com grunt quickServe --webpack'
 alias grqss='PROXY_TARGET_HOST=https://staging.dev.onshape.com grunt quickServe --webpack'
-alias grtpc='grunt precommit --stacktrace'
+alias grtpc='grunt precommit --target=http://localhost.dev.onshape.com:8000'
 alias grttd='grunt tidy || grunt tidy'
 alias grtc='grunt copy'
 alias grtjs='grunt karma:ci'
@@ -216,8 +216,9 @@ alias er1='export EXTERNAL_REPO=1'
 alias er0='export EXTERNAL_REPO=0'
 
 # D&D
-alias r='afplay /Users/kotoole/repos/roll/sounds/dice-sound.mp3 & disown; python ~/repos/roll/roll.py'
+alias r='afplay /Users/kotoole/repos/roll/sounds/dice-sound.mp3 & disown; /usr/local/bin/python ~/repos/roll/roll.py;'
 alias sz='afplay /Users/kotoole/repos/roll/sounds/Intellect\ devourer\ \(powerful\ 4\).mp3 & disown'
+alias st='afplay /Users/kotoole/repos/roll/sounds/thunder_sound_FX-Grant_Evans-1523270250.mp3 & disown'
 
 # Harvard Unix
 alias fas='ssh kso968@nice.fas.harvard.edu'
@@ -285,11 +286,11 @@ function gdllr()
 {
 
     for b; do
-        if [[ ! `git branch --contains ${b} --list master` ]]
-        then
-            echo -e "${YELLOW}Did not delete ${b}, which was not contained in master ${NORMAL}"
-            continue
-        fi
+        # if [[ ! `git branch --contains ${b} --list master` ]]
+        # then
+        #     echo -e "${YELLOW}Did not delete ${b}, which was not contained in master ${NORMAL}"
+        #     continue
+        # fi
         git branch -D ${b}
         if [ `git branch -r --list "origin/${b}-uitest"` ]
         then
@@ -541,11 +542,12 @@ export PIC1=p24FJ128GB206
 export PIC2=p24FJ64GB002
 export USE_LIBPCRE=yes
 export BTI_DISABLE_HEARTBEATS=1
+export BTI_ENABLE_TIMERS=1
 # export RELEASE=1
 # export 
 export JAVA_MAX_MEMORY_MB=4096
 export VIRTUAL_ENV_DISABLE_PROMPT=1
-export DOCKER_SERVICES=mongo,rabbit,memcache
+export DOCKER_SERVICES="rabbitmq memcached mongodb"
 
 # Harvard JVM
 # export SIMPLE_JAVA=~/Documents/Harvard/JVM/SimpleJava/simplejava-assignment1
