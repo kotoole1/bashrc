@@ -216,7 +216,7 @@ alias er1='export EXTERNAL_REPO=1'
 alias er0='export EXTERNAL_REPO=0'
 
 # D&D
-alias r='/usr/local/bin/python ~/repos/roll/roll.py; afplay /Users/kotoole/repos/roll/sounds/dice-sound.mp3 & disown;'
+alias r='afplay /Users/kotoole/repos/roll/sounds/dice-sound.mp3 & disown; python ~/repos/roll/roll.py'
 alias sz='afplay /Users/kotoole/repos/roll/sounds/Intellect\ devourer\ \(powerful\ 4\).mp3 & disown'
 alias st='afplay /Users/kotoole/repos/roll/sounds/thunder_sound_FX-Grant_Evans-1523270250.mp3 & disown'
 
