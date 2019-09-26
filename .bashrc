@@ -35,6 +35,7 @@ alias cdop='cd ~/Onsync/Playground/'
 alias cdm='cd ~/repos/mark-file-system/'
 alias cdt='cd ~/repos/TypeScript'
 alias cdr='cd ~/repos/roll'
+alias cdcivui="cd /Users/kotoole/Library/Application\ Support/Steam/SteamApps/common/Sid\ Meier\'s\ Civilization\ V/Civilization\ V.app/Contents/Home/Assets/DLC/UI_bc1"
 
 alias gbr='git branch'
 alias gb='cur=$(git rev-parse --abbrev-ref HEAD); prev=$(git rev-parse --abbrev-ref @{-1}); git for-each-ref --sort=committerdate refs/heads/ --format="%(color:reset)  %(refname:short)|%(color:black bold)%(committerdate:relative)%(color:reset)" | column -ts"|" | sed -e "s,  ${cur} ,$(tput setaf 2)$(tput bold)* ${cur} $(tput sgr0)," | sed -e "s,  ${prev} ,$(tput setaf 3)$(tput bold)  ${prev} $(tput sgr0),";'
@@ -142,7 +143,7 @@ alias grsv="lsof -i :8000 | grep LISTEN | sed 's/node[ ]*\([0-9]*\).*/\1/' | xar
 alias grqs='grunt quickServe'
 alias grqsc='PROXY_TARGET_HOST=https://demo-c.dev.onshape.com grunt quickServe --webpack'
 alias grqss='PROXY_TARGET_HOST=https://staging.dev.onshape.com grunt quickServe --webpack'
-alias grtpc='grunt precommit --target=http://localhost.dev.onshape.com:8000'
+alias ypc='yarn precommit --target=http://localhost.dev.onshape.com:8000'
 alias grttd='grunt tidy || grunt tidy'
 alias grtc='grunt copy'
 alias grtjs='grunt karma:ci'
@@ -151,14 +152,15 @@ alias goog='grunt googlecc:release'
 alias gjs='grunt gjslint'
 alias jsun='grunt karma:newton_htmlCoverage'
 alias jsuw='grunt karma:woolsthorpe_htmlCoverage'
-alias grtes='grunt eslint:fixAll'
-alias grtts='grunt tslint:fix'
+alias grtes='grunt eslint:typescript --fix'
 alias grtxx='grunt xgettext --fix'
-alias grtfx='grunt tslint:fix && grunt eslint:fixAll && grunt xgettext --fix && tidy'
+alias grtfx='grunt eslint:typescript --fix && grunt xgettext --fix && tidy'
 alias kill00="lsof -i :8000 | grep LISTEN | sed 's/node[ ]*\([0-9]*\).*/\1/' | xargs kill"
 alias pt00='ptor --target=http://localhost.dev.onshape.com:8000'
 alias ptoc='ptor --target=https://demo-c.dev.onshape.com/'
 alias grtc='grunt tests:configurations'
+alias timer='~/repos/timerdisplay/server.js ~/stage/WebSvc/logs/timer.log & sleep 1; open -a Google\ Chrome http://localhost:8088/'
+alias killtimer="lsof -i :8088 | grep LISTEN | sed 's/node[ ]*\([0-9]*\).*/\1/' | xargs kill"
 
 alias md='mongodump -o ~/temp/mongodump && mongoDropAll'
 alias mda='mongoDropAll'
@@ -169,7 +171,7 @@ alias zkin='java -jar ~/Onshape/zipkin/zipkin.jar'
 
 alias jv='"${JAVA_HOME}/bin/java" -classpath ".:${javaSerializeClassPath}"'
 alias jc='javac -classpath ".:${javaSerializeClassPath}::${antlrCompletePath}"'
-alias grfd='gradle generateFsDoc && open -a Google\ Chrome $STAGE/WebSvc/webapps/root/FsDoc/library.html'
+alias grfd='gradle generateFsDoc && open -a Google\ Chrome ~/stage/build/web/FsDoc/library.html'
 alias grtfd='grunt markdownFsDoc'
 alias grtfdo='grunt markdownFsDoc && cp ~/repos/newton/project/web/FsDoc/fs-doc.css ~/stage/build/web/FsDoc/ && open -a Google\ Chrome ~/stage/build/web/FsDoc/index.html'
 alias ofd='cp ~/repos/newton/project/web/FsDoc/fs-doc.css ~/stage/build/web/FsDoc/ && open -a Google\ Chrome ~/stage/build/web/FsDoc/library.html'
@@ -218,6 +220,7 @@ alias er0='export EXTERNAL_REPO=0'
 # D&D
 alias r='afplay /Users/kotoole/repos/roll/sounds/dice-sound.mp3 & disown; python ~/repos/roll/roll.py'
 alias sz='afplay /Users/kotoole/repos/roll/sounds/Intellect\ devourer\ \(powerful\ 4\).mp3 & disown'
+alias sk='afplay /Users/kotoole/repos/roll/sounds/Good\ Janet\ Boop\ summoning\ sound.mp3 & disown'
 alias st='afplay /Users/kotoole/repos/roll/sounds/thunder_sound_FX-Grant_Evans-1523270250.mp3 & disown'
 
 # Harvard Unix
@@ -398,7 +401,11 @@ function vvx()
 # Document extractor
 function restore()
 {
-    restoreDump.py "$1" --remap "kotoole@onshape.com" -m -e && grzc && gradle && startbelcad
+    if [[ "$2" == "--grdl" ]]; then
+        restoreDump.py "$1" --remap "kotoole@onshape.com" -m -e && RELESE=1 grdl zookeeperClean --stacktrace && grdlu java gen js buildWebSvcJs start
+    else
+        restoreDump.py "$1" --remap "kotoole@onshape.com" -m -e && grzc && gradle && startbelcad
+    fi
 }
 
 function giff()
@@ -483,10 +490,18 @@ function ggraft()
     git stash apply
 }
 
-# iterm badges
-function iterm2_print_user_vars()
+# # iterm badges
+# function iterm2_print_user_vars()
+# {
+#   iterm2_set_user_var dockerStatus $(checkServices -s rabbitmq | sed s/"Checking Rabbit MQ Server.. "//)
+# }
+
+function watchDocker()
 {
-  iterm2_set_user_var dockerStatus $(checkServices -s rabbitmq | sed s/"Checking Rabbit MQ Server.. "//)
+    while true; do
+        docker logs "${1}" >> logOut.txt
+        sleep 0.05;
+    done
 }
 
 man() {
@@ -548,6 +563,7 @@ export BTI_ENABLE_TIMERS=1
 export JAVA_MAX_MEMORY_MB=4096
 export VIRTUAL_ENV_DISABLE_PROMPT=1
 export DOCKER_SERVICES="rabbitmq memcached mongodb"
+ulimit -c unlimited
 
 # Harvard JVM
 # export SIMPLE_JAVA=~/Documents/Harvard/JVM/SimpleJava/simplejava-assignment1
