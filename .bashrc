@@ -144,6 +144,7 @@ alias grqs='grunt quickServe'
 alias grqsc='PROXY_TARGET_HOST=https://demo-c.dev.onshape.com grunt quickServe --webpack'
 alias grqss='PROXY_TARGET_HOST=https://staging.dev.onshape.com grunt quickServe --webpack'
 alias ypc='yarn precommit --target=http://localhost.dev.onshape.com:8000'
+alias yck='yarn checkJsCode'
 alias grttd='grunt tidy || grunt tidy'
 alias grtc='grunt copy'
 alias grtjs='grunt karma:ci'
@@ -563,6 +564,7 @@ export BTI_ENABLE_TIMERS=1
 export JAVA_MAX_MEMORY_MB=4096
 export VIRTUAL_ENV_DISABLE_PROMPT=1
 export DOCKER_SERVICES="rabbitmq memcached mongodb"
+export EXTERNAL_REPO=1
 ulimit -c unlimited
 
 # Harvard JVM
