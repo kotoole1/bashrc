@@ -143,8 +143,11 @@ alias grsv="lsof -i :8000 | grep LISTEN | sed 's/node[ ]*\([0-9]*\).*/\1/' | xar
 alias grqs='grunt quickServe'
 alias grqsc='PROXY_TARGET_HOST=https://demo-c.dev.onshape.com grunt quickServe --webpack'
 alias grqss='PROXY_TARGET_HOST=https://staging.dev.onshape.com grunt quickServe --webpack'
+alias grsvc='PROXY_TARGET_HOST=https://demo-c.dev.onshape.com grunt serve --webpack'
+alias grsvs='PROXY_TARGET_HOST=https://staging.dev.onshape.com grunt serve --webpack'
 alias ypc='yarn precommit --target=http://localhost.dev.onshape.com:8000'
 alias yck='yarn checkJsCode'
+alias jest="yarn jest --config=project/web/ts/jest.config.js"
 alias grttd='grunt tidy || grunt tidy'
 alias grtc='grunt copy'
 alias grtjs='grunt karma:ci'
@@ -155,7 +158,7 @@ alias jsun='grunt karma:newton_htmlCoverage'
 alias jsuw='grunt karma:woolsthorpe_htmlCoverage'
 alias grtes='grunt eslint:typescript --fix'
 alias grtxx='grunt xgettext --fix'
-alias grtfx='grunt eslint:typescript --fix && grunt xgettext --fix && tidy'
+alias grtfx='grunt eslint:typescript --fix; grunt xgettext --fix; tidy'
 alias kill00="lsof -i :8000 | grep LISTEN | sed 's/node[ ]*\([0-9]*\).*/\1/' | xargs kill"
 alias pt00='ptor --target=http://localhost.dev.onshape.com:8000'
 alias ptoc='ptor --target=https://demo-c.dev.onshape.com/'
@@ -250,6 +253,9 @@ alias dj='/Users/kotoole/.virtualenvs/compCharity/bin/python /Users/kotoole/repo
 alias djr='/Users/kotoole/.virtualenvs/compCharity/bin/python /Users/kotoole/repos/compCharity/manage.py runserver'
 alias hdj='heroku run python manage.py'
 alias workoff='deactivate'
+
+alias topc='top -o cpu -s 2 -i 5'
+alias topm='top -o rsize -s 2'
 
 # alias spic='scons && python /Users/kotoole/repos/elecanisms/site_scons/bootloadercmd.py'
 # alias pic='python /Users/kotoole/repos/elecanisms/site_scons/bootloadercmd.py'
@@ -501,7 +507,7 @@ function watchDocker()
 {
     while true; do
         docker logs "${1}" >> logOut.txt
-        sleep 0.05;
+        sleep 0.01;
     done
 }
 
@@ -549,7 +555,8 @@ export PATH=$PATH:/usr/local/bin
 # export ALWAYS_LINT_JS=false
 export CLICOLOR=1
 export LSCOLORS=gxBxhxDxfxhxhxhxhxcxcx
-export XCODEBUILD=1
+export XCODEBUILD=0
+export USE_CCACHE=1
 export ARCHFLAGS="-arch x86_64"
 export EDITOR='subl -w'
 export GIT_SEQUENCE_EDITOR='subl -w'
