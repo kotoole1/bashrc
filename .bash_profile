@@ -7,7 +7,8 @@
 export PATH=$PATH:~/.gem/ruby/1.8/bin:/opt/nginx/sbin
 
 # Your place for hosting Git repos. I use this for private repos.
-export GIT_HOSTING='git@git.domain.com'
+# export GIT_HOSTING='git@git.domain.com'
+export HISTTIMEFORMAT="%T "
 
 # Set my editor and git editor
 export EDITOR='subl -w'
@@ -34,7 +35,21 @@ if [ -f `brew --prefix`/etc/bash_completion ]; then
     . `brew --prefix`/etc/bash_completion
 fi
 
-source ~/repos/gitstatus/gitstatus.plugin.sh
+# source ~/repos/gitstatus/gitstatus.plugin.sh
+
+function fast_git_status() {
+  if gitstatus_query && [[ "$VCS_STATUS_RESULT" == ok-sync ]]; then
+    if [[ "$VCS_STATUS_HAS_STAGED"    == 1 ]]; then
+        echo '✗ '
+    elif [[ "$VCS_STATUS_HAS_UNSTAGED"  == 1 ]]; then
+        echo '✗ '
+    elif [[ "$VCS_STATUS_HAS_UNTRACKED" == 1 ]]; then
+        echo '✗ '
+    else
+        echo '✓ '
+    fi
+  fi
+}
 
 # Git branch name
 function git_branch() {
@@ -51,20 +66,6 @@ git_status() {
             echo '✓ '
         fi
     fi
-}
-
-function fast_git_status() {
-  if gitstatus_query && [[ "$VCS_STATUS_RESULT" == ok-sync ]]; then
-    if [[ "$VCS_STATUS_HAS_STAGED"    == 1 ]]; then
-        echo '✗ '
-    elif [[ "$VCS_STATUS_HAS_UNSTAGED"  == 1 ]]; then
-        echo '✗ '
-    elif [[ "$VCS_STATUS_HAS_UNTRACKED" == 1 ]]; then
-        echo '✗ '
-    else
-        echo '✓ '
-    fi
-  fi
 }
 
 # Token representing whether gradle is started and/or grunt server is running
@@ -95,12 +96,11 @@ CYAN='\[\033[36m\]'
 BOLD='\[\033[1m\]'
 NORMAL='\[\033[0m\]'
 
-# export PS1="$BOLD\$(git_status)\$(git_branch)$BLUE\$(gradle_status)\W/$NORMAL $ "
-
+export PS1="$BOLD\$(git_status)\$(git_branch)$BLUE\$(gradle_status)\W/$NORMAL $ "
+# export PS1="$ "
 # gitstatus_stop && gitstatus_start
 
-# export PS1="$ "
-export PS1="$BOLD\$(git_status)\$(git_branch)$BLUE\$(gradle_status)\W/$NORMAL $ "
+export BASH_SILENCE_DEPRECATION_WARNING=1
 
 test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
 

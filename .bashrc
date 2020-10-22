@@ -1,14 +1,13 @@
 #!/bin/bash
 
 alias rc='. ~/.bashrc'
-alias rsc='. ~/.bashrc && cd ~/repos/newton && source ~/repos/newton/buildenv.bash > /dev/null && deactivate && cd -'
-alias erc='subl ~/repos/bashrc/.bashrc'
+alias rsc='. ~/.bashrc && cd ~/repos/newton && source ~/repos/newton/buildenv.bash > /dev/null && cd -'
+alias erc='open -a Sublime\ Text ~/repos/bashrc/.bashrc'
 
 alias wt='open -a /applications/WebStorm.app'
 alias ecl='open -a /Users/kotoole/eclipse/jee-photon/Eclipse.app'
-alias xc='open -a Xcode'
-alias xcn='open -a Xcode ~/stage/build/cppServer/DebugXcode/BTcppServer.xcodeproj'
-alias xco='open -a Xcode ~/repos/onsync/Onsync/Onsync.xcworkspace'
+alias xc='open -a /Applications/apps.noindex/Xcode-11.1.app'
+alias xcn='open -a /Applications/apps.noindex/Xcode-11.1.app ~/stage/build/cppServer/DebugXcodeCCache/BTcppServer.xcodeproj'
 alias chr='open -a Google\ Chrome'
 alias ai='sudo /Applications/Adobe\ Illustrator\ CS6/Adobe\ Illustrator.app/Contents/MacOS/Adobe\ Illustrator'
 
@@ -45,10 +44,12 @@ alias gf='git fetch && git fetch --tags'
 alias glog='git log'
 #git config --global alias.lg "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
 alias glg='git lg'
+alias glgg="git log --color --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
+alias gfol="git log --color --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --stat --follow"
 alias glf="git log --color --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
 alias glg1="git log -n 1 --color --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
 alias glg5="git log -n 5 --color --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
-alias ggm='git-get-merge'
+alias ggm='git get-merge'
 alias gm='git merge'
 alias grv='git rev-parse'
 alias gh='git rev-parse HEAD | pbcopy && git rev-parse HEAD'
@@ -136,6 +137,7 @@ alias cm='cp -r ~/stage/test/results/* ~/temp/cachedTestResults/; cleanMost'
 alias ce='cp -r ~/stage/test/results/* ~/temp/cachedTestResults/; cleanEverything'
 
 alias xcc='buildCppServer'
+alias xcap='osascript ~/Onshape/attach-to-bsservers.scpt'
 alias dumps='open /Applications/Utilities/Console.app'
 
 alias grt='grunt'
@@ -167,7 +169,7 @@ alias timer='~/repos/timerdisplay/server.js ~/stage/WebSvc/logs/timer.log & slee
 alias killtimer="lsof -i :8088 | grep LISTEN | sed 's/node[ ]*\([0-9]*\).*/\1/' | xargs kill"
 
 alias md='mongodump -o ~/temp/mongodump && mongoDropAll'
-alias mda='mongoDropAll'
+alias mda='mongoDropAll && rm -r ~/stage/mongodb'
 alias mr='mongorestore --drop ~/temp/mongodump'
 alias mrb='mongorestore --drop ~/temp/emptyMongo'
 
@@ -199,8 +201,8 @@ alias now='date +"%T"'
 alias day='date +"%d-%m-%Y"'
 alias tf='tail -f'
 alias tfb='tail -f ~/stage/WebSvc/logs/btserver.log'
-alias sbb='subl /Users/kotoole/stage/WebSvc/logs/btserver.log'
-alias sup='subl ~/stage/WebSvc/logs/upgrade.log'
+alias sbb='open -a Sublime\ Text ~/stage/WebSvc/logs/btserver.log'
+alias sup='open -a Sublime\ Text ~/stage/WebSvc/logs/upgrade.log'
 alias lgf='cat ~/stage/WebSvc/logs/btserver.log | grep -i'
 alias fhs='find . -type f -name'
 alias fh='find . -type f -iname'
@@ -212,7 +214,13 @@ alias lc='locate -i'
 alias lcu='sudo /usr/libexec/locate.updatedb'
 alias cc='pbcopy && pbpaste'
 alias vv='pbpaste'
-alias pi='ping 8.8.8.8'
+alias pi='ping -i 0.2 8.8.8.8'
+alias pii='ping -i 0.2 -c 1 8.8.8.8 >/dev/null && echo "✓ Successfully pinged 8.8.8.8" || echo "✗ Failed to ping 8.8.8.8"'
+alias pig='ping -c 1 -t 1 www.google.com'
+alias pigg='ping -c 1 -t 1 www.google.com >/dev/null && echo "✓ Successfully pinged google.com" || echo "✗ Failed to ping google.com"' # TODO: The return status here does not work!
+alias lug='nslookup www.google.com'
+alias lugg='nslookup www.google.com -c 1 -i 0.5 www.google.com >/dev/null && echo "✓ Successfully pinged google.com" || echo "✗ Failed to ping google.com"'
+# alias hostlookup='host -t srv _ldap._tcp.google.com'
 alias size='du -sh'
 
 alias ydl='youtube-dl'
@@ -228,13 +236,13 @@ alias sk='afplay /Users/kotoole/repos/roll/sounds/Good\ Janet\ Boop\ summoning\ 
 alias st='afplay /Users/kotoole/repos/roll/sounds/thunder_sound_FX-Grant_Evans-1523270250.mp3 & disown'
 
 # Harvard Unix
-alias fas='ssh kso968@nice.fas.harvard.edu'
-alias fasm='sshfs kso968@nice.fas.harvard.edu:/ ~/Documents/Harvard/Unix/nice-fas-mount/'
-alias fasum='umount -f ~/Documents/Harvard/Unix/nice-fas-mount/'
-alias sublfas='subl /Users/kotoole/Documents/Harvard/Unix/nice-fas-mount/nfs/home/k/s/kso968/'
-alias cdfas='cd /Users/kotoole/Documents/Harvard/Unix/nice-fas-mount/nfs/home/k/s/kso968/'
+# alias fas='ssh kso968@nice.fas.harvard.edu'
+# alias fasm='sshfs kso968@nice.fas.harvard.edu:/ ~/Documents/Harvard/Unix/nice-fas-mount/'
+# alias fasum='umount -f ~/Documents/Harvard/Unix/nice-fas-mount/'
+# alias sublfas='open -a Sublime\ Text /Users/kotoole/Documents/Harvard/Unix/nice-fas-mount/nfs/home/k/s/kso968/'
+# alias cdfas='cd /Users/kotoole/Documents/Harvard/Unix/nice-fas-mount/nfs/home/k/s/kso968/'
 
-alias shrr='subl /Applications/HyperRogue.app/Contents/MacOS/hyperrogue.log'
+# alias shrr='open -a Sublime\ Text /Applications/HyperRogue.app/Contents/MacOS/hyperrogue.log'
 
 # # sed replacement for BEL-8983
 # alias seddo="find . -type f -name '*' -exec sed -i.sed.bak -e 's/matepoint/mateconnector/g' -e 's/matePoint/mateConnector/g' -e 's/Matepoint/Mateconnector/g' -e 's/MatePoint/MateConnector/g' -e 's/MATEPOINT/MATECONNECTOR/g' -e 's/mate point/mate connector/g' -e 's/mate Point/mate Connector/g' -e 's/Mate point/Mate connector/g' -e 's/Mate Point/Mate Connector/g' -e 's/MATE POINT/MATE CONNECTOR/g' -e 's/mate_point/mate_connector/g' -e 's/mate_Point/mate_Connector/g' -e 's/Mate_point/Mate_connector/g' -e 's/Mate_Point/Mate_Connector/g' -e 's/MATE_POINT/MATE_CONNECTOR/g' {} \;"
@@ -497,6 +505,65 @@ function ggraft()
     git stash apply
 }
 
+function testRemote() {
+  local helpString="Usage: testRemote [-h] [testname ...]
+  Use the build farm to run tests remotely on the current branch.
+  If no tests are specified, precommit and uitest are run.
+  Example: testRemote @precommit @mocha @longtest
+    -h --help   : display this help and exit
+    test to run : a test or list of tests from the options below
+$(bf script ls)"
+  for inputArg in "$@"; do
+    if [ "$inputArg" == "-h" ] || [ "$inputArg" == "--help" ]; then
+      echo "$helpString"
+      return 1
+    elif [ ${inputArg:0:1} == "-" ]; then
+      # protect from sending arguments starting with '-' directly to `bf build with set` later
+      echo "Argument not supported '$inputArg'" 1>&2
+      echo "$helpString"
+      return 1
+    fi
+  done
+  # -- Default to precommit and uitest --
+  local tests="$@"
+  if [ $# -eq 0 ]; then
+    tests="@precommit @uitest"
+  fi
+  # -- Construct a branch name --
+  local branchPrefix
+  if [ -z "$personalRemoteBranchPrefix" ]; then
+    branchPrefix=$(git config --get user.email | egrep -o '^[^@]+' | sed 's/[^a-zA-Z0-9]//g')
+  else
+    branchPrefix=$personalRemoteBranchPrefix
+  fi
+  if [ -z "$branchPrefix" ]; then
+    echo "git config --global user.email not done" 1>&2
+    return 1
+  fi
+  local currentBranchName=$(git rev-parse --abbrev-ref HEAD | sed -e "s/^$branchPrefix//" -e 's/[^a-zA-Z0-9_\-]//g')
+  if [ -z "$currentBranchName" ]; then
+    echo "Failed to find current branch name" 1>&2
+    return 1
+  fi
+  local remoteBranchName=$branchPrefix/${currentBranchName}_buildfarm
+  local matchesSystemBranch=$(echo $remoteBranchName | egrep -o '^(master|rel-[0-9]*\.[0-9]+)$')
+  if [ ! -z "$matchesSystemBranch" ]; then
+    echo "Cannot force push $remoteBranchName" 1>&2
+    return 1
+  fi
+  # -- Setup bf --
+  bf branch set "$remoteBranchName" > /dev/null
+  # this could be `true` instead, and then the force push would do the work, but it is easier to
+  # just start the build manually with `bf branch build`, so that we do not need to wait an
+  # unspecified amount of time for bf to pick up the branches, and then show status information
+  bf build on push set false > /dev/null
+  bf build with set "$tests" > /dev/null
+  # -- Push the branch --
+  git push origin HEAD:$remoteBranchName -f 2>&1 | egrep -v '^remote:.*$'
+  # -- Kick off and show status information --
+  bf branch build
+}
+
 # # iterm badges
 # function iterm2_print_user_vars()
 # {
@@ -555,7 +622,7 @@ export PATH=$PATH:/usr/local/bin
 # export ALWAYS_LINT_JS=false
 export CLICOLOR=1
 export LSCOLORS=gxBxhxDxfxhxhxhxhxcxcx
-export XCODEBUILD=0
+export XCODEBUILD=1
 export USE_CCACHE=1
 export ARCHFLAGS="-arch x86_64"
 export EDITOR='subl -w'
@@ -566,12 +633,13 @@ export PIC2=p24FJ64GB002
 export USE_LIBPCRE=yes
 export BTI_DISABLE_HEARTBEATS=1
 export BTI_ENABLE_TIMERS=1
+export SHOULD_INCLUDE_GRADLE_PLUGINS=0
 # export RELEASE=1
 # export 
 export JAVA_MAX_MEMORY_MB=4096
 export VIRTUAL_ENV_DISABLE_PROMPT=1
 export DOCKER_SERVICES="rabbitmq memcached mongodb"
-export EXTERNAL_REPO=1
+# export EXTERNAL_REPO=1
 ulimit -c unlimited
 
 # Harvard JVM
