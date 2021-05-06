@@ -1,13 +1,13 @@
 #!/bin/bash
 
 alias rc='. ~/.bashrc'
-alias rsc='. ~/.bashrc && cd ~/repos/newton && source ~/repos/newton/buildenv.bash > /dev/null && cd -'
+alias rsc='. ~/.bashrc && cd $REPO_NEWTON && source $REPO_NEWTON/buildenv.bash > /dev/null && btSetupEnv && cd -'
 alias erc='open -a Sublime\ Text ~/repos/bashrc/.bashrc'
 
 alias wt='open -a /applications/WebStorm.app'
-alias ecl='open -a /Users/kotoole/eclipse/jee-photon/Eclipse.app'
+alias ecl='btEnvEclipse'
 alias xc='open -a /Applications/apps.noindex/Xcode-11.1.app'
-alias xcn='open -a /Applications/apps.noindex/Xcode-11.1.app ~/stage/build/cppServer/DebugXcodeCCache/BTcppServer.xcodeproj'
+alias xcn='open -a /Applications/apps.noindex/Xcode-11.1.app $STAGE/build/cppServer/DebugXcodeCCache/BTcppServer.xcodeproj'
 alias chr='open -a Google\ Chrome'
 alias ai='sudo /Applications/Adobe\ Illustrator\ CS6/Adobe\ Illustrator.app/Contents/MacOS/Adobe\ Illustrator'
 
@@ -19,13 +19,15 @@ alias cl='clear'
 alias la='ls -a'
 alias sl='ls'
 alias ll='ls -l'
-alias cdn='cd ~/repos/newton'
+alias cdnn='cd ~/repos/newton'
+alias cdss='cd ~/stage'
+alias cdn='cd $REPO_NEWTON'
+alias cds='cd $STAGE'
 alias cdm='cd ~/repos/mcdm-units'
-alias cds='cd ~/stage' 
-alias cdf='cd ~/repos/newton/project/web/WEB-INF/BelScript/onshape/std/'
-alias cdp='cd ~/repos/newton/project/'
+alias cdf='cd $REPO_NEWTON/project/web/WEB-INF/BelScript/onshape/std/'
+alias cdp='cd $REPO_NEWTON/project/'
 alias cde='cd ~/repos/elecanisms'
-alias cda='cd ~/repos/newton/bower_components/ace/src-noconflict'
+alias cda='cd $REPO_NEWTON/bower_components/ace/src-noconflict'
 alias cdaa='cd ~/repos/ace'
 alias cdj='cd ~/Documents/Harvard/JVM/SimpleJava'
 alias cdo='cd ~/repos/onsync'
@@ -90,13 +92,14 @@ alias gpl='git pull'
 alias gpsu='git push --set-upstream origin $(git rev-parse --abbrev-ref HEAD)'
 alias gph='git pull heroku master && git commit -m "merging from heroku" && git push heroku master'
 alias gsh='git show'
+#git config --global alias.rf "reflog --pretty=format:'%gd %Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
 alias grf='git rf'
 alias gap='git add -p'
 alias gapp='git meld-index'
 alias gsmr='git submodule foreach --recursive git reset --hard'
 alias gsmu='git submodule update --force --init --recursive'
 alias ggame='/usr/local/bin/git-game-1.1/git-game'
-alias rprev='git checkout master -- ~/repos/newton/project/previous-templates'
+alias rprev='git checkout master -- $REPO_NEWTON/project/previous-templates'
 alias pull='git fetch --tags && pullmerge master -m "merging from master branch"'
 alias pullr='git fetch --tags && pullmerge master --rebase'
 alias hpr='git push && hub pull-request -m "$(git log -1 --pretty=%B)" | pbcopy && pbpaste'
@@ -116,15 +119,15 @@ alias sbc='startbelcad'
 alias spbc='stopbelcad'
 alias grss='gradle stop && gradle start'
 alias grsp='gradle stop'
-alias grpc='~/repos/newton/bin/precommit.py'
+alias grpc='$REPO_NEWTON/bin/precommit.py'
 alias pfarmall='remotePrecommitWithMochaAndLongTests'
 alias grtd='gradle tidy'
-alias grtp='gradle tidy && ~/repos/newton/bin/precommit.py'
+alias grtp='gradle tidy && $REPO_NEWTON/bin/precommit.py'
 alias grzc='gradle zookeeperClean --stacktrace'
 alias grcn='gradle clean'
 alias grec='gradle prepEclipse --stacktrace'
-alias gree='gradle prepEclipse --stacktrace && open -a /Users/kotoole/eclipse/jee-photon/Eclipse.app'
-alias ggre='gradle --stacktrace && gradle prepEclipse --stacktrace && open -a /Users/kotoole/eclipse/jee-photon/Eclipse.app'
+alias gree='gradle prepEclipse; open -a /Applications/Eclipse.app/'
+alias ggre='gradle && gradle prepEclipse; open -a /Applications/Eclipse.app/'
 alias grup='gradle runDocumentUpgrade'
 alias grfs='gradle linkStaticBelScript'
 alias grsz='gradle runCodeGenForSerializables'
@@ -133,12 +136,12 @@ alias cni='cleanNodeIconv'
 alias rrab='brew services restart rabbitmq'
 alias drab='docker run -d --rm --name rabbitmq --hostname localhost -p 4369:4369 -p 5671:5671 -p 5672:5672 -p 15672:15672 -p 25672:25672 rabbitmq:3.7-management-alpine'
 alias ddraw='startDrawingDocker'
-alias cm='cp -r ~/stage/test/results/* ~/temp/cachedTestResults/; cleanMost'
-alias ce='cp -r ~/stage/test/results/* ~/temp/cachedTestResults/; cleanEverything'
+alias cm='cp -r $STAGE/test/results/* ~/temp/cachedTestResults/; cleanMost'
+alias ce='cp -r $STAGE/test/results/* ~/temp/cachedTestResults/; cleanEverything'
 
 alias xcc='buildCppServer'
 alias xcap='osascript ~/Onshape/attach-to-bsservers.scpt'
-alias dumps='open /Applications/Utilities/Console.app'
+alias dumps='open /System/Applications/Utilities/Console.app'
 
 alias grt='grunt'
 alias grsv="lsof -i :8000 | grep LISTEN | sed 's/node[ ]*\([0-9]*\).*/\1/' | xargs kill && grunt serve --webpack"
@@ -165,11 +168,11 @@ alias kill00="lsof -i :8000 | grep LISTEN | sed 's/node[ ]*\([0-9]*\).*/\1/' | x
 alias pt00='ptor --target=http://localhost.dev.onshape.com:8000'
 alias ptoc='ptor --target=https://demo-c.dev.onshape.com/'
 alias grtc='grunt tests:configurations'
-alias timer='~/repos/timerdisplay/server.js ~/stage/WebSvc/logs/timer.log & sleep 1; open -a Google\ Chrome http://localhost:8088/'
+alias timer='~/repos/timerdisplay/server.js $STAGE/WebSvc/logs/timer.log & sleep 1; open -a Google\ Chrome http://localhost:8088/'
 alias killtimer="lsof -i :8088 | grep LISTEN | sed 's/node[ ]*\([0-9]*\).*/\1/' | xargs kill"
 
 alias md='mongodump -o ~/temp/mongodump && mongoDropAll'
-alias mda='mongoDropAll && rm -r ~/stage/mongodb'
+alias mda='mongoDropAll && rm -r $STAGE/mongodb'
 alias mr='mongorestore --drop ~/temp/mongodump'
 alias mrb='mongorestore --drop ~/temp/emptyMongo'
 
@@ -177,12 +180,14 @@ alias zkin='java -jar ~/Onshape/zipkin/zipkin.jar'
 
 alias jv='"${JAVA_HOME}/bin/java" -classpath ".:${javaSerializeClassPath}"'
 alias jc='javac -classpath ".:${javaSerializeClassPath}::${antlrCompletePath}"'
-alias grfd='gradle generateFsDoc && open -a Google\ Chrome ~/stage/build/web/FsDoc/library.html'
+alias grfd='gradle generateFsDoc && open -a Google\ Chrome $STAGE/build/web/FsDoc/library.html'
 alias grtfd='grunt markdownFsDoc'
-alias grtfdo='grunt markdownFsDoc && cp ~/repos/newton/project/web/FsDoc/fs-doc.css ~/stage/build/web/FsDoc/ && open -a Google\ Chrome ~/stage/build/web/FsDoc/index.html'
-alias ofd='cp ~/repos/newton/project/web/FsDoc/fs-doc.css ~/stage/build/web/FsDoc/ && open -a Google\ Chrome ~/stage/build/web/FsDoc/library.html'
-alias cfd='cp ~/stage/build/web/FsDoc/library.html ~/stage/WebSvc/webapps/root/FsDoc/library.html && cp ~/repos/newton/project/web/FsDoc/fs-doc.css ~/stage/build/web/FsDoc/ && cp ~/repos/newton/project/web/FsDoc/fs-doc.css ~/stage/WebSvc/webapps/root/FsDoc/fs-doc.css && open -a "Google Chrome"'
-alias cfdd='cp ~/stage/build/web/FsDoc/library.html ~/stage/WebSvc/webapps/root/FsDoc/library.html && cp ~/repos/newton/project/web/FsDoc/fs-doc.css ~/stage/build/web/FsDoc/ && cp ~/repos/newton/project/web/FsDoc/fs-doc.css ~/stage/WebSvc/webapps/root/FsDoc/fs-doc.css && open -a Google\ Chrome ~/stage/WebSvc/webapps/root/FsDoc/library.html'
+alias grtfdo='grunt markdownFsDoc && cp $REPO_NEWTON/project/web/FsDoc/fs-doc.css $STAGE/build/web/FsDoc/ && open -a Google\ Chrome $STAGE/build/web/FsDoc/index.html'
+alias ofd='cp $REPO_NEWTON/project/web/FsDoc/fs-doc.css $STAGE/build/web/FsDoc/ && open -a Google\ Chrome $STAGE/build/web/FsDoc/library.html'
+alias cfd='cp $STAGE/build/web/FsDoc/library.html $STAGE/WebSvc/webapps/root/FsDoc/library.html && cp $REPO_NEWTON/project/web/FsDoc/fs-doc.css $STAGE/build/web/FsDoc/ && cp $REPO_NEWTON/project/web/FsDoc/fs-doc.css $STAGE/WebSvc/webapps/root/FsDoc/fs-doc.css && open -a "Google Chrome"'
+alias cfdd='cp $STAGE/build/web/FsDoc/library.html $STAGE/WebSvc/webapps/root/FsDoc/library.html && cp $REPO_NEWTON/project/web/FsDoc/fs-doc.css $STAGE/build/web/FsDoc/ && cp $REPO_NEWTON/project/web/FsDoc/fs-doc.css $STAGE/WebSvc/webapps/root/FsDoc/fs-doc.css && open -a Google\ Chrome $STAGE/WebSvc/webapps/root/FsDoc/library.html'
+
+alias sshbf='ssh $(bf node account)'
 
 alias rbt='ag TODOK; rbt'
 alias rbp='ag TODOK; rbt post -o'
@@ -200,14 +205,14 @@ alias hl='history | less'
 alias now='date +"%T"'
 alias day='date +"%d-%m-%Y"'
 alias tf='tail -f'
-alias tfb='tail -f ~/stage/WebSvc/logs/btserver.log'
-alias sbb='open -a Sublime\ Text ~/stage/WebSvc/logs/btserver.log'
-alias sup='open -a Sublime\ Text ~/stage/WebSvc/logs/upgrade.log'
-alias lgf='cat ~/stage/WebSvc/logs/btserver.log | grep -i'
+alias tfb='tail -f $STAGE/WebSvc/logs/btserver.log'
+alias sbb='open -a Sublime\ Text $STAGE/WebSvc/logs/btserver.log'
+alias sup='open -a Sublime\ Text $STAGE/WebSvc/logs/upgrade.log'
+alias fbb='cat $STAGE/WebSvc/logs/btserver.log | grep -i'
 alias fhs='find . -type f -name'
 alias fh='find . -type f -iname'
-alias fns='find ~/repos/newton -type f -name'
-alias fn='find ~/repos/newton -type f -iname'
+alias fns='find $REPO_NEWTON -type f -name'
+alias fn='find $REPO_NEWTON -type f -iname'
 alias fffs='find . -type f -name'
 alias fff='find . -type f -iname'
 alias lc='locate -i'
@@ -265,6 +270,8 @@ alias workoff='deactivate'
 alias topc='top -o cpu -s 2 -i 5'
 alias topm='top -o rsize -s 2'
 
+alias ip='curl ipinfo.io'
+
 # alias spic='scons && python /Users/kotoole/repos/elecanisms/site_scons/bootloadercmd.py'
 # alias pic='python /Users/kotoole/repos/elecanisms/site_scons/bootloadercmd.py'
 # alias pread='screen /dev/tty.usbserial-FTGRLGT5 19200'
@@ -286,7 +293,7 @@ function swrite()
 }
 
 # git delete
-function gdl() 
+function gdl()
 {
     for b; do
         eval "git branch -D ${b}"
@@ -417,9 +424,9 @@ function vvx()
 function restore()
 {
     if [[ "$2" == "--grdl" ]]; then
-        restoreDump.py "$1" --remap "kotoole@onshape.com" -m -e && RELESE=1 grdl zookeeperClean --stacktrace && grdlu java gen js buildWebSvcJs start
+        restoreDump "$1" --remap "btadmin@onshape.com" -m && RELESE=1 grdl zookeeperClean --stacktrace && grdlu java gen js buildWebSvcJs start
     else
-        restoreDump.py "$1" --remap "kotoole@onshape.com" -m -e && grzc && gradle && startbelcad
+        restoreDump "$1" --remap "btadmin@onshape.com" -m && grzc && gradle && startbelcad
     fi
 }
 
@@ -463,7 +470,7 @@ function pfarm()
 function gcop()
 {
     SOURCE="${1-master}"
-    rm -r ~/repos/newton/project/previous-templates/ && git checkout $SOURCE -- ~/repos/newton/project/previous-templates/
+    rm -r $REPO_NEWTON/project/previous-templates/ && git checkout $SOURCE -- $REPO_NEWTON/project/previous-templates/
 }
 
 function blamesearch()
@@ -505,64 +512,65 @@ function ggraft()
     git stash apply
 }
 
-function testRemote() {
-  local helpString="Usage: testRemote [-h] [testname ...]
-  Use the build farm to run tests remotely on the current branch.
-  If no tests are specified, precommit and uitest are run.
-  Example: testRemote @precommit @mocha @longtest
-    -h --help   : display this help and exit
-    test to run : a test or list of tests from the options below
-$(bf script ls)"
-  for inputArg in "$@"; do
-    if [ "$inputArg" == "-h" ] || [ "$inputArg" == "--help" ]; then
-      echo "$helpString"
-      return 1
-    elif [ ${inputArg:0:1} == "-" ]; then
-      # protect from sending arguments starting with '-' directly to `bf build with set` later
-      echo "Argument not supported '$inputArg'" 1>&2
-      echo "$helpString"
-      return 1
-    fi
-  done
-  # -- Default to precommit and uitest --
-  local tests="$@"
-  if [ $# -eq 0 ]; then
-    tests="@precommit @uitest"
-  fi
-  # -- Construct a branch name --
-  local branchPrefix
-  if [ -z "$personalRemoteBranchPrefix" ]; then
-    branchPrefix=$(git config --get user.email | egrep -o '^[^@]+' | sed 's/[^a-zA-Z0-9]//g')
-  else
-    branchPrefix=$personalRemoteBranchPrefix
-  fi
-  if [ -z "$branchPrefix" ]; then
-    echo "git config --global user.email not done" 1>&2
-    return 1
-  fi
-  local currentBranchName=$(git rev-parse --abbrev-ref HEAD | sed -e "s/^$branchPrefix//" -e 's/[^a-zA-Z0-9_\-]//g')
-  if [ -z "$currentBranchName" ]; then
-    echo "Failed to find current branch name" 1>&2
-    return 1
-  fi
-  local remoteBranchName=$branchPrefix/${currentBranchName}_buildfarm
-  local matchesSystemBranch=$(echo $remoteBranchName | egrep -o '^(master|rel-[0-9]*\.[0-9]+)$')
-  if [ ! -z "$matchesSystemBranch" ]; then
-    echo "Cannot force push $remoteBranchName" 1>&2
-    return 1
-  fi
-  # -- Setup bf --
-  bf branch set "$remoteBranchName" > /dev/null
-  # this could be `true` instead, and then the force push would do the work, but it is easier to
-  # just start the build manually with `bf branch build`, so that we do not need to wait an
-  # unspecified amount of time for bf to pick up the branches, and then show status information
-  bf build on push set false > /dev/null
-  bf build with set "$tests" > /dev/null
-  # -- Push the branch --
-  git push origin HEAD:$remoteBranchName -f 2>&1 | egrep -v '^remote:.*$'
-  # -- Kick off and show status information --
-  bf branch build
-}
+## Replaced with pushToBuildFarm @whatever
+# function testRemote() {
+#   local helpString="Usage: testRemote [-h] [testname ...]
+#   Use the build farm to run tests remotely on the current branch.
+#   If no tests are specified, precommit and uitest are run.
+#   Example: testRemote @precommit @mocha @longtest
+#     -h --help   : display this help and exit
+#     test to run : a test or list of tests from the options below
+# $(bf script ls)"
+#   for inputArg in "$@"; do
+#     if [ "$inputArg" == "-h" ] || [ "$inputArg" == "--help" ]; then
+#       echo "$helpString"
+#       return 1
+#     elif [ ${inputArg:0:1} == "-" ]; then
+#       # protect from sending arguments starting with '-' directly to `bf build with set` later
+#       echo "Argument not supported '$inputArg'" 1>&2
+#       echo "$helpString"
+#       return 1
+#     fi
+#   done
+#   # -- Default to precommit and uitest --
+#   local tests="$@"
+#   if [ $# -eq 0 ]; then
+#     tests="@precommit @uitest"
+#   fi
+#   # -- Construct a branch name --
+#   local branchPrefix
+#   if [ -z "$personalRemoteBranchPrefix" ]; then
+#     branchPrefix=$(git config --get user.email | egrep -o '^[^@]+' | sed 's/[^a-zA-Z0-9]//g')
+#   else
+#     branchPrefix=$personalRemoteBranchPrefix
+#   fi
+#   if [ -z "$branchPrefix" ]; then
+#     echo "git config --global user.email not done" 1>&2
+#     return 1
+#   fi
+#   local currentBranchName=$(git rev-parse --abbrev-ref HEAD | sed -e "s/^$branchPrefix//" -e 's/[^a-zA-Z0-9_\-]//g')
+#   if [ -z "$currentBranchName" ]; then
+#     echo "Failed to find current branch name" 1>&2
+#     return 1
+#   fi
+#   local remoteBranchName=$branchPrefix/${currentBranchName}_buildfarm
+#   local matchesSystemBranch=$(echo $remoteBranchName | egrep -o '^(master|rel-[0-9]*\.[0-9]+)$')
+#   if [ ! -z "$matchesSystemBranch" ]; then
+#     echo "Cannot force push $remoteBranchName" 1>&2
+#     return 1
+#   fi
+#   # -- Setup bf --
+#   bf branch set "$remoteBranchName" > /dev/null
+#   # this could be `true` instead, and then the force push would do the work, but it is easier to
+#   # just start the build manually with `bf branch build`, so that we do not need to wait an
+#   # unspecified amount of time for bf to pick up the branches, and then show status information
+#   bf build on push set false > /dev/null
+#   bf build with set "$tests" > /dev/null
+#   # -- Push the branch --
+#   git push origin HEAD:$remoteBranchName -f 2>&1 | egrep -v '^remote:.*$'
+#   # -- Kick off and show status information --
+#   bf branch build
+# }
 
 # # iterm badges
 # function iterm2_print_user_vars()
@@ -615,13 +623,15 @@ Play all notification sounds:
 X
 
 export PATH=/usr/local/heroku/bin:$PATH
-export PATH=$PATH:/Applications/Postgres.app/Contents/Versions/9.3/bin
 export PATH=/usr/local/autoconf/bin:$PATH
+export PATH=$PATH:/Applications/Postgres.app/Contents/Versions/9.3/bin
 export PATH=$PATH:"/Applications/microchip/xc16/v1.24/bin"
 export PATH=$PATH:/usr/local/bin
+export PATH=$PATH:~/Library/Python/2.7/lib/python/site-packages
 # export ALWAYS_LINT_JS=false
 export CLICOLOR=1
 export LSCOLORS=gxBxhxDxfxhxhxhxhxcxcx
+export BASH_SILENCE_DEPRECATION_WARNING=1
 export XCODEBUILD=1
 export USE_CCACHE=1
 export ARCHFLAGS="-arch x86_64"
