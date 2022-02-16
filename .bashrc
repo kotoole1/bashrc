@@ -7,6 +7,7 @@ alias erc='open -a Sublime\ Text ~/repos/bashrc/.bashrc'
 alias wt='open -a /applications/WebStorm.app'
 alias ecl='btEnvEclipse'
 alias xc='open -a /Applications/apps.noindex/Xcode-11.1.app'
+alias cl='open -a /Applications/CLion.app'
 alias xcn='open -a /Applications/apps.noindex/Xcode-11.1.app $STAGE/build/cppServer/DebugXcodeCCache/BTcppServer.xcodeproj'
 alias chr='open -a Google\ Chrome'
 alias ai='sudo /Applications/Adobe\ Illustrator\ CS6/Adobe\ Illustrator.app/Contents/MacOS/Adobe\ Illustrator'
@@ -15,7 +16,6 @@ alias oct='octave --force-gui &'
 alias finder='open -a Finder .'
 alias py='python'
 
-alias cl='clear'
 alias la='ls -a'
 alias sl='ls'
 alias ll='ls -l'
@@ -42,16 +42,16 @@ alias gbr='git branch'
 alias gb='cur=$(git rev-parse --abbrev-ref HEAD); prev=$(git rev-parse --abbrev-ref @{-1}); git for-each-ref --sort=committerdate refs/heads/ --format="%(color:reset)  %(refname:short)|%(color:black bold)%(committerdate:relative)%(color:reset)" | column -ts"|" | sed -e "s,  ${cur} ,$(tput setaf 2)$(tput bold)* ${cur} $(tput sgr0)," | sed -e "s,  ${prev} ,$(tput setaf 3)$(tput bold)  ${prev} $(tput sgr0),";'
 alias gco='git checkout'
 alias gst='git status'
-alias gf='git fetch && git fetch --tags' 
+alias gf='git fetch && git fetch --tags -f' 
 alias glog='git log'
-#git config --global alias.lg "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
-alias glg='git lg'
-alias glgg="git log --color --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
-alias gfol="git log --color --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --stat --follow"
-alias glf="git log --color --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
-alias glg1="git log -n 1 --color --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
-alias glg5="git log -n 5 --color --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
-alias ggm='git get-merge'
+#git config --global alias.lg "log --color --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit" 
+# ^ No --graph, too slow
+alias glg="git lg"
+alias glgg='git lg --graph'
+alias gfol="git lg --stat --follow"
+alias glg1="git lg -n 1"
+alias glg5="git lg -n 5"
+alias ggm='git when-merged --log'
 alias gm='git merge'
 alias grv='git rev-parse'
 alias gh='git rev-parse HEAD | pbcopy && git rev-parse HEAD'
@@ -71,6 +71,7 @@ alias gmt='git mergetool'
 alias gdt='git difftool'
 alias gd='git diff'
 alias gdn='git diff --name-only'
+alias gdw='git diff --word-diff=color --word-diff-regex="\w+"'
 alias gds='git diff --stat'
 alias gdc='git diff --color-words'
 alias gdh='git diff HEAD'
@@ -100,8 +101,8 @@ alias gsmr='git submodule foreach --recursive git reset --hard'
 alias gsmu='git submodule update --force --init --recursive'
 alias ggame='/usr/local/bin/git-game-1.1/git-game'
 alias rprev='git checkout master -- $REPO_NEWTON/project/previous-templates'
-alias pull='git fetch --tags && pullmerge master -m "merging from master branch"'
-alias pullr='git fetch --tags && pullmerge master --rebase'
+alias pull='pullmerge master -m "merging from master branch"'
+alias pullr='pullmerge master --rebase'
 alias hpr='git push && hub pull-request -m "$(git log -1 --pretty=%B)" | pbcopy && pbpaste'
 alias hprm='hub pull-request -m'
 alias pullrc='cd ~/repos/bashrc && git pull origin master && cd -'
@@ -110,17 +111,20 @@ alias pushrc='cd ~/repos/bashrc && git commit -a -m "commit" && git pull origin 
 alias mb='git merge-base master head'
 
 alias gr='gradle'
-alias grst='gradle start'
-alias grd='RELEASE=1 grdlu start'
-alias grdj='RELEASE=1 grdlu java gen start'
-alias grdjs='RELEASE=1 grdlu gen js buildWebSvcJs start'
-alias grdjjs='RELEASE=1 grdlu java gen js buildWebSvcJs start'
+alias grst='gradle start && terminal-notifier -title "Success" -message "Build complete" || terminal-notifier -title "Build failed" -message ""'
+alias grd='RELEASE=1 grdlu start && terminal-notifier -title "Success" -message "Build complete" || terminal-notifier -title "Build failed" -message ""'
+alias grdj='RELEASE=1 grdlu java gen prepEclipse && terminal-notifier -title "Success" -message "Build complete" || terminal-notifier -title "Build failed" -message ""'
+alias grdjs='RELEASE=1 grdlu gen js buildWebSvcJs start && terminal-notifier -title "Success" -message "Build complete" || terminal-notifier -title "Build failed" -message ""'
+alias grdjjs='RELEASE=1 grdlu java gen prepEclipse js buildWebSvcJs start && terminal-notifier -title "Success" -message "Build complete" || terminal-notifier -title "Build failed" -message ""'
 alias sbc='startbelcad'
 alias spbc='stopbelcad'
 alias grss='gradle stop && gradle start'
 alias grsp='gradle stop'
 alias grpc='$REPO_NEWTON/bin/precommit.py'
-alias pfarmall='remotePrecommitWithMochaAndLongTests'
+alias pf='pushToBuildFarm'
+alias pfu='pushToBuildFarm @uitest'
+alias pfp='pushToBuildFarm @precommit @uitest'
+alias pfa='pushToBuildFarm @precommit @uitest @mocha @longtest'
 alias grtd='gradle tidy'
 alias grtp='gradle tidy && $REPO_NEWTON/bin/precommit.py'
 alias grzc='gradle zookeeperClean --stacktrace'
@@ -138,8 +142,10 @@ alias drab='docker run -d --rm --name rabbitmq --hostname localhost -p 4369:4369
 alias ddraw='startDrawingDocker'
 alias cm='cp -r $STAGE/test/results/* ~/temp/cachedTestResults/; cleanMost'
 alias ce='cp -r $STAGE/test/results/* ~/temp/cachedTestResults/; cleanEverything'
+alias fixgrunt='diskImageUmountAll; rm ~/build_tools/diskimage/onshape-javascript_*; source buildenv.bash'
 
 alias xcc='buildCppServer'
+alias cpp='buildCppServer && terminal-notifier -title "Success" -message "Compilation complete" || terminal-notifier -title "Compilation failed" -message ""'
 alias xcap='osascript ~/Onshape/attach-to-bsservers.scpt'
 alias dumps='open /System/Applications/Utilities/Console.app'
 
@@ -151,12 +157,12 @@ alias grqss='PROXY_TARGET_HOST=https://staging.dev.onshape.com grunt quickServe 
 alias grsvc='PROXY_TARGET_HOST=https://demo-c.dev.onshape.com grunt serve --webpack'
 alias grsvs='PROXY_TARGET_HOST=https://staging.dev.onshape.com grunt serve --webpack'
 alias ypc='yarn precommit --target=http://localhost.dev.onshape.com:8000'
-alias yck='yarn checkJsCode'
+alias yck='yarn checkJsCode && npx tsc --noEmit --project $REPO_NEWTON/project/web/tsconfig.json'
+alias grw='npx tsc --noEmit --project $REPO_NEWTON/project/web/tsconfig.json'
 alias jest="yarn jest --config=project/web/ts/jest.config.js"
 alias grttd='grunt tidy || grunt tidy'
 alias grtc='grunt copy'
 alias grtjs='grunt karma:ci'
-alias grw='grunt webpack'
 alias goog='grunt googlecc:release'
 alias gjs='grunt gjslint'
 alias jsun='grunt karma:newton_htmlCoverage'
@@ -176,7 +182,8 @@ alias mda='mongoDropAll && rm -r $STAGE/mongodb'
 alias mr='mongorestore --drop ~/temp/mongodump'
 alias mrb='mongorestore --drop ~/temp/emptyMongo'
 
-alias zkin='java -jar ~/Onshape/zipkin/zipkin.jar'
+# alias zkin='java -jar ~/Onshape/zipkin/zipkin.jar'
+alias zkc='stopZookeeperIfRunning && startZookeeper && zk clean'
 
 alias jv='"${JAVA_HOME}/bin/java" -classpath ".:${javaSerializeClassPath}"'
 alias jc='javac -classpath ".:${javaSerializeClassPath}::${antlrCompletePath}"'
@@ -221,12 +228,15 @@ alias cc='pbcopy && pbpaste'
 alias vv='pbpaste'
 alias pi='ping -i 0.2 8.8.8.8'
 alias pii='ping -i 0.2 -c 1 8.8.8.8 >/dev/null && echo "✓ Successfully pinged 8.8.8.8" || echo "✗ Failed to ping 8.8.8.8"'
-alias pig='ping -c 1 -t 1 www.google.com'
+alias pig='ping www.google.com'
 alias pigg='ping -c 1 -t 1 www.google.com >/dev/null && echo "✓ Successfully pinged google.com" || echo "✗ Failed to ping google.com"' # TODO: The return status here does not work!
 alias lug='nslookup www.google.com'
 alias lugg='nslookup www.google.com -c 1 -i 0.5 www.google.com >/dev/null && echo "✓ Successfully pinged google.com" || echo "✗ Failed to ping google.com"'
 # alias hostlookup='host -t srv _ldap._tcp.google.com'
 alias size='du -sh'
+
+alias create-company="onshape create-company --seats 10 --admins 2 --release-management --eula --name"
+alias create-enterprise="onshape create-enterprise --seats 10 --admins 2 --release-management --eula --name"
 
 alias ydl='youtube-dl'
 alias ydl3='youtube-dl --extract-audio --audio-format mp3 --audio-quality 0'
@@ -277,7 +287,7 @@ alias ip='curl ipinfo.io'
 # alias pread='screen /dev/tty.usbserial-FTGRLGT5 19200'
 # alias bread='screen /dev/tty.RN42-3B4D-SPP 115200'
 
-alias nt='terminal-notifier -title "Success" -message "Command complete" || terminal-notifier -title "Failure" -message ""'
+alias tt='terminal-notifier -title "Success" -message "Command complete" || terminal-notifier -title "Failure" -message ""'
 
 # Handibot
 alias hb='sudo nmap -sn 192.168.0.0/24 | grep Murata -B 2' #FC:DB:B3:A8:F5:45
@@ -578,6 +588,9 @@ function ggraft()
 #   iterm2_set_user_var dockerStatus $(checkServices -s rabbitmq | sed s/"Checking Rabbit MQ Server.. "//)
 # }
 
+# Usage:
+# export -f watchDocker
+# startElasticsearch | xargs -I {} bash -c 'watchDocker "$@"' _ {}
 function watchDocker()
 {
     while true; do
@@ -643,12 +656,14 @@ export PIC2=p24FJ64GB002
 export USE_LIBPCRE=yes
 export BTI_DISABLE_HEARTBEATS=1
 export BTI_ENABLE_TIMERS=1
+export BS_DEBUG_OPTIONS=SIGNAL_STACK_UNMODIFIED
 export SHOULD_INCLUDE_GRADLE_PLUGINS=0
+cppRegisterWithFirewall
 # export RELEASE=1
+export ENABLE_THUMBNAIL_SERVICE=1
 # export 
 export JAVA_MAX_MEMORY_MB=4096
 export VIRTUAL_ENV_DISABLE_PROMPT=1
-export DOCKER_SERVICES="rabbitmq memcached mongodb"
 # export EXTERNAL_REPO=1
 ulimit -c unlimited
 
