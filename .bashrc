@@ -51,7 +51,7 @@ alias glgg='git lg --graph'
 alias gfol="git lg --stat --follow"
 alias glg1="git lg -n 1"
 alias glg5="git lg -n 5"
-alias ggm='git when-merged --log'
+alias ggm='git-get-merge'
 alias gm='git merge'
 alias grv='git rev-parse'
 alias gh='git rev-parse HEAD | pbcopy && git rev-parse HEAD'
@@ -109,6 +109,7 @@ alias pullrc='cd ~/repos/bashrc && git pull origin master && cd -'
 alias pushrc='cd ~/repos/bashrc && git commit -a -m "commit" && git pull origin master && git push origin master && cd -'
 # Usage: git diff $(mb)..head
 alias mb='git merge-base master head'
+alias checkjava='tidy; gradle java:codeChecker java:pmd'
 
 alias gr='gradle'
 alias grst='gradle start && terminal-notifier -title "Success" -message "Build complete" || terminal-notifier -title "Build failed" -message ""'
@@ -130,8 +131,8 @@ alias grtp='gradle tidy && $REPO_NEWTON/bin/precommit.py'
 alias grzc='gradle zookeeperClean --stacktrace'
 alias grcn='gradle clean'
 alias grec='gradle prepEclipse --stacktrace'
-alias gree='gradle prepEclipse; open -a /Applications/Eclipse.app/'
-alias ggre='gradle && gradle prepEclipse; open -a /Applications/Eclipse.app/'
+alias gree='gradle prepEclipse; btEnvEclipse'
+alias ggre='gradle && gradle prepEclipse; btEnvEclipse'
 alias grup='gradle runDocumentUpgrade'
 alias grfs='gradle linkStaticBelScript'
 alias grsz='gradle runCodeGenForSerializables'
@@ -171,7 +172,7 @@ alias grtes='grunt eslint:typescript --fix'
 alias grtxx='grunt xgettext --fix'
 alias grtfx='grunt eslint:typescript --fix; grunt xgettext --fix; tidy'
 alias kill00="lsof -i :8000 | grep LISTEN | sed 's/node[ ]*\([0-9]*\).*/\1/' | xargs kill"
-alias pt00='ptor --target=http://localhost.dev.onshape.com:8000'
+alias pt00='ptor --target=http://localhost.onshape.io:8000'
 alias ptoc='ptor --target=https://demo-c.dev.onshape.com/'
 alias grtc='grunt tests:configurations'
 alias timer='~/repos/timerdisplay/server.js $STAGE/WebSvc/logs/timer.log & sleep 1; open -a Google\ Chrome http://localhost:8088/'
@@ -245,10 +246,11 @@ alias er1='export EXTERNAL_REPO=1'
 alias er0='export EXTERNAL_REPO=0'
 
 # D&D
-alias r='afplay /Users/kotoole/repos/roll/sounds/dice-sound.mp3 & disown; python ~/repos/roll/roll.py'
-alias sz='afplay /Users/kotoole/repos/roll/sounds/Intellect\ devourer\ \(powerful\ 4\).mp3 & disown'
-alias sk='afplay /Users/kotoole/repos/roll/sounds/Good\ Janet\ Boop\ summoning\ sound.mp3 & disown'
-alias st='afplay /Users/kotoole/repos/roll/sounds/thunder_sound_FX-Grant_Evans-1523270250.mp3 & disown'
+alias r='afplay ~/repos/roll/sounds/dice-sound.mp3 & disown; python ~/repos/roll/roll.py'
+alias rs='python ~/repos/roll/roll.py'
+alias sz='afplay ~/repos/roll/sounds/Intellect\ devourer\ \(powerful\ 4\).mp3 & disown'
+alias sk='afplay ~/repos/roll/sounds/Good\ Janet\ Boop\ summoning\ sound.mp3 & disown'
+alias st='afplay ~/repos/roll/sounds/thunder_sound_FX-Grant_Evans-1523270250.mp3 & disown'
 
 # Harvard Unix
 # alias fas='ssh kso968@nice.fas.harvard.edu'
@@ -522,6 +524,44 @@ function ggraft()
     git stash apply
 }
 
+# DisplayPlacer stuff
+
+# # Does not work!
+# export DISPLAYPLACER_SWITCH_DONE=0;
+# function switchScreens()
+# {
+# 	echo $DISPLAYPLACER_SWITCH_DONE
+# 	if [[ $DISPLAYPLACER_SWITCH_DONE ]]; then
+# 		echo "first"
+# 		placeScreens reverse
+# 		export DISPLAYPLACER_SWITCH_DONE=0
+# 	else
+# 		placeScreens
+# 		export DISPLAYPLACER_SWITCH_DONE=1
+# 	fi
+# }
+
+function displayplacerPlaceScreens()
+{
+	displayplacerPlaceScreenIds $(displayplacerListScreenIds "$@")
+}
+
+function displayplacerListScreenIds()
+{
+	if [[ ${1} == "reverse" ]]; then
+		SORT_FLAGS="-nr"
+	else
+		SORT_FLAGS="-n"
+	fi
+
+	displayplacer list | sed -n 's/Persistent screen id: //p' | sed '/10410A4A-97BA-683D-2D74-467FAC9EB319/d' | sort ${SORT_FLAGS}
+}
+
+function displayplacerPlaceScreenIds()
+{
+	displayplacer "id:10410A4A-97BA-683D-2D74-467FAC9EB319 res:1792x1120 hz:59 color_depth:8 scaling:on origin:(0,0) degree:0" "id:${1} res:2560x1440 color_depth:8 scaling:off origin:(855,-1440) degree:0" "id:${2} res:2560x1440 color_depth:8 scaling:off origin:(-1705,-1440) degree:0"& disown
+}
+
 ## Replaced with pushToBuildFarm @whatever
 # function testRemote() {
 #   local helpString="Usage: testRemote [-h] [testname ...]
@@ -641,11 +681,13 @@ export PATH=$PATH:/Applications/Postgres.app/Contents/Versions/9.3/bin
 export PATH=$PATH:"/Applications/microchip/xc16/v1.24/bin"
 export PATH=$PATH:/usr/local/bin
 export PATH=$PATH:~/Library/Python/2.7/lib/python/site-packages
+export PATH="~/Library/Python/3.8/bin:${PATH}"
+
 # export ALWAYS_LINT_JS=false
 export CLICOLOR=1
 export LSCOLORS=gxBxhxDxfxhxhxhxhxcxcx
 export BASH_SILENCE_DEPRECATION_WARNING=1
-export XCODEBUILD=1
+export XCODEBUILD=0
 export USE_CCACHE=1
 export ARCHFLAGS="-arch x86_64"
 export EDITOR='subl -w'
@@ -658,7 +700,8 @@ export BTI_DISABLE_HEARTBEATS=1
 export BTI_ENABLE_TIMERS=1
 export BS_DEBUG_OPTIONS=SIGNAL_STACK_UNMODIFIED
 export SHOULD_INCLUDE_GRADLE_PLUGINS=0
-cppRegisterWithFirewall
+export SKIP_DRAWING=1
+# cppRegisterWithFirewall
 # export RELEASE=1
 export ENABLE_THUMBNAIL_SERVICE=1
 # export 

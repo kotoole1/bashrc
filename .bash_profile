@@ -156,7 +156,7 @@ NORMAL='\[\033[0m\]'
 INVERT='\[\033[7m\]'
 UNINVERT='\[\033[27m\]'
 
-export PS1="$BOLD\$(which_newton)$NORMAL$BOLD\$(git_branch)$BLUE\$(gradle_status)\W/$NORMAL $ "
+export PS1="${BOLD}\$(which_newton)${NORMAL}${BOLD}\$(git_branch)${BLUE}\$(gradle_status)\W/${NORMAL} $ "
 # export PS1="$ "
 # gitstatus_stop && gitstatus_start
 
