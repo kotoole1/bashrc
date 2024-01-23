@@ -651,29 +651,29 @@ man() {
             man "$@"
 }
 
-<<X
-Run Jenkins ptor:
-:test:client:envTests
-UI_TEST_SPEC='["e2e/featureStudioSpec.js", "e2e/autocompleteSpec.js"]'
-:test:client:runUntilFail
-SPEC='autocompleteSpec'
 
-:java:test:runBasicRetrievalTest
+# Run Jenkins ptor:
+# :test:client:envTests
+# UI_TEST_SPEC='["e2e/featureStudioSpec.js", "e2e/autocompleteSpec.js"]'
+# :test:client:runUntilFail
+# SPEC='autocompleteSpec'
 
-Add grunt watcher:
-node_modules/grunt-contrib-watch/tasks/watch.js
-require('shelljs').exec('terminal-notifier -title "Waiting..." -message "Grunt server is ready"');
+# :java:test:runBasicRetrievalTest
 
-Log syntax state:
-  this.aceEditor.on('changeSelection', function(e) {
-    bt.elements.featureStudio.AutocompleteManager.getSyntaxState(self.aceEditor.session,
-        /** @type {{getSelection: function(): {lead: AcePosition} }} */ (self.aceEditor).getSelection().lead);
-  });
+# Add grunt watcher:
+# node_modules/grunt-contrib-watch/tasks/watch.js
+# require('shelljs').exec('terminal-notifier -title "Waiting..." -message "Grunt server is ready"');
 
-Play all notification sounds:
+# Log syntax state:
+#   this.aceEditor.on('changeSelection', function(e) {
+#     bt.elements.featureStudio.AutocompleteManager.getSyntaxState(self.aceEditor.session,
+#         /** @type {{getSelection: function(): {lead: AcePosition} }} */ (self.aceEditor).getSelection().lead);
+#   });
+
+# Play all notification sounds:
 # find / -name "*.m4a" -or -name "*.aiff" -exec echo "Playing {}" \; -exec afplay "{}" \;
 
-X
+
 
 export PATH=/usr/local/heroku/bin:$PATH
 export PATH=/usr/local/autoconf/bin:$PATH

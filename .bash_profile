@@ -37,9 +37,10 @@ fi
 
 # source ~/repos/gitstatus/gitstatus.plugin.sh
 
-function iterm2_print_user_vars() {
-  iterm2_set_user_var gitDiff "f" #$(git_status)
-}
+## 2024: Unsure how I was using iterm2_shell_integration, commenting out for now 
+# function iterm2_print_user_vars() {
+#   iterm2_set_user_var gitDiff "f" #$(git_status)
+# }
 
 function fast_git_status() {
   if gitstatus_query && [[ "$VCS_STATUS_RESULT" == ok-sync ]]; then
@@ -63,8 +64,8 @@ function git_branch() {
 # Token representing whether or not your working directory is clean
 function git_status() {
     if git rev-parse --git-dir > /dev/null 2>&1; then
-        status="$(git status -b --porcelain 2> /dev/null || git status --porcelain 2> /dev/null)"
-        if [[ -n "${status}" ]] && [[ "${status}" != "\n" ]] && [[ -n "$(grep -v ^# <<< "${status}")" ]]; then
+        status_return="$(git status -b --porcelain 2> /dev/null || git status --porcelain 2> /dev/null)"
+        if [[ -n "${status_return}" ]] && [[ "${status_return}" != "\n" ]] && [[ -n "$(grep -v ^# <<< "${status_return}")" ]]; then
             echo '✗ '
         else
             echo '✓ '
@@ -119,7 +120,7 @@ function is_wrong_newton() {
 # Token representing whether gradle is started and/or grunt server is running
 # For speed, this just checks port usage. If you're running something else on
 # ports 8080 or 8000, this token will be misleading
-function gradle_status() {
+function port_status() {
     pattern='newton([0-9]*)'
     dir=$(pwd)
     num="0"
@@ -156,11 +157,16 @@ NORMAL='\[\033[0m\]'
 INVERT='\[\033[7m\]'
 UNINVERT='\[\033[27m\]'
 
-export PS1="${BOLD}\$(which_newton)${NORMAL}${BOLD}\$(git_branch)${BLUE}\$(gradle_status)\W/${NORMAL} $ "
+# # for bash
+# export PS1="${BOLD}\$(which_newton)${NORMAL}${BOLD}\$(git_branch)${BLUE}\$(port_status)\W/${NORMAL} $ "
 # export PS1="$ "
-# gitstatus_stop && gitstatus_start
+
+setopt PROMPT_SUBST
+# for zsh
+export PS1="%B%f\$(git_status)%b\$(git_branch)%B\$(port_status)%F{blue}%~/%b%f $ "
 
 export BASH_SILENCE_DEPRECATION_WARNING=1
 
-test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
+# test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
 
+# gitstatus_stop && gitstatus_start
