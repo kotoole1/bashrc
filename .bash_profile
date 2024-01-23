@@ -11,6 +11,7 @@ export PATH=$PATH:~/.gem/ruby/1.8/bin:/opt/nginx/sbin
 export HISTTIMEFORMAT="%T "
 
 # Set my editor and git editor
+# Not there by default, need to run e.g. `sudo ln -s /Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl /usr/local/bin/.`
 export EDITOR='subl -w'
 export GIT_EDITOR='subl -w'
 
@@ -163,7 +164,7 @@ UNINVERT='\[\033[27m\]'
 
 setopt PROMPT_SUBST
 # for zsh
-export PS1="%B%f\$(git_status)%b\$(git_branch)%B\$(port_status)%F{blue}%~/%b%f $ "
+export PS1="%B%f\$(git_status)%b\$(git_branch)%B\$(port_status)%F{blue}%1d/%b%f $ "
 
 export BASH_SILENCE_DEPRECATION_WARNING=1
 
