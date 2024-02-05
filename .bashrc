@@ -1,42 +1,36 @@
 #!/bin/bash
 
-alias rc='. ~/.bashrc'
-alias rsc='. ~/.bashrc && cd $REPO_NEWTON && source $REPO_NEWTON/buildenv.bash > /dev/null && btSetupEnv && cd -'
+alias rc='source ~/.zshrc'
+# alias rsc='. ~/.bashrc && cd $REPO_NEWTON && source $REPO_NEWTON/buildenv.bash > /dev/null && btSetupEnv && cd -'
 alias erc='open -a Sublime\ Text ~/repos/bashrc/.bashrc'
 
 alias wt='open -a /applications/WebStorm.app'
 alias ecl='btEnvEclipse'
-alias xc='open -a /Applications/apps.noindex/Xcode-11.1.app'
+# alias xc='open -a /Applications/apps.noindex/Xcode-11.1.app'
 alias cl='open -a /Applications/CLion.app'
-alias xcn='open -a /Applications/apps.noindex/Xcode-11.1.app $STAGE/build/cppServer/DebugXcodeCCache/BTcppServer.xcodeproj'
+# alias xcn='open -a /Applications/apps.noindex/Xcode-11.1.app $STAGE/build/cppServer/DebugXcodeCCache/BTcppServer.xcodeproj'
 alias chr='open -a Google\ Chrome'
 alias ai='sudo /Applications/Adobe\ Illustrator\ CS6/Adobe\ Illustrator.app/Contents/MacOS/Adobe\ Illustrator'
+alias ees='open -a Sublime\ Text ~/Library/Application\ Support/espanso/match/base.yml'
+alias vs='open -a Visual\ Studio\ Code.app'
 
-alias oct='octave --force-gui &'
+# alias oct='octave --force-gui &'
 alias finder='open -a Finder .'
-alias py='python'
+alias py='python3'
 
 alias la='ls -a'
 alias sl='ls'
 alias ll='ls -l'
+
 alias cdnn='cd ~/repos/newton'
-alias cdss='cd ~/stage'
-alias cdn='cd $REPO_NEWTON'
-alias cds='cd $STAGE'
+# alias cdss='cd ~/stage'
+# alias cdn='cd $REPO_NEWTON'
+# alias cds='cd $STAGE'
 alias cdm='cd ~/repos/mcdm-units'
-alias cdf='cd $REPO_NEWTON/project/web/WEB-INF/BelScript/onshape/std/'
-alias cdp='cd $REPO_NEWTON/project/'
-alias cde='cd ~/repos/elecanisms'
-alias cda='cd $REPO_NEWTON/bower_components/ace/src-noconflict'
-alias cdaa='cd ~/repos/ace'
-alias cdj='cd ~/Documents/Harvard/JVM/SimpleJava'
-alias cdo='cd ~/repos/onsync'
-alias cdoj='cd ~/repos/onsync/onsync-js'
-alias cdoo='cd ~/repos/onsync/Onsync'
-alias cdop='cd ~/Onsync/Playground/'
-alias cdt='cd ~/repos/TypeScript'
+alias cda='cd ~/repos/aoe-sharps-docker/'
 alias cdr='cd ~/repos/roll'
 alias cdcivui="cd /Users/kotoole/Library/Application\ Support/Steam/SteamApps/common/Sid\ Meier\'s\ Civilization\ V/Civilization\ V.app/Contents/Home/Assets/DLC/UI_bc1"
+alias cdes="cd ~/Library/Application\ Support/espanso"
 
 alias gbr='git branch'
 alias gb='cur=$(git rev-parse --abbrev-ref HEAD); prev=$(git rev-parse --abbrev-ref @{-1}); git for-each-ref --sort=committerdate refs/heads/ --format="%(color:reset)  %(refname:short)|%(color:black bold)%(committerdate:relative)%(color:reset)" | column -ts"|" | sed -e "s,  ${cur} ,$(tput setaf 2)$(tput bold)* ${cur} $(tput sgr0)," | sed -e "s,  ${prev} ,$(tput setaf 3)$(tput bold)  ${prev} $(tput sgr0),";'
@@ -54,7 +48,7 @@ alias glg5="git lg -n 5"
 alias ggm='git-get-merge'
 alias gm='git merge'
 alias grv='git rev-parse'
-alias gh='git rev-parse HEAD | pbcopy && git rev-parse HEAD'
+alias ghh='git rev-parse HEAD | pbcopy && git rev-parse HEAD'
 alias gcl='git clean -i'
 alias gc='git clone'
 alias gcm='git commit -a -m'
@@ -109,100 +103,103 @@ alias pullrc='cd ~/repos/bashrc && git pull origin master && cd -'
 alias pushrc='cd ~/repos/bashrc && git commit -a -m "commit" && git pull origin master && git push origin master && cd -'
 # Usage: git diff $(mb)..head
 alias mb='git merge-base master head'
-alias checkjava='tidy; gradle java:codeChecker java:pmd'
 
-alias gr='gradle'
-alias grst='gradle start && terminal-notifier -title "Success" -message "Build complete" || terminal-notifier -title "Build failed" -message ""'
-alias grd='RELEASE=1 grdlu start && terminal-notifier -title "Success" -message "Build complete" || terminal-notifier -title "Build failed" -message ""'
-alias grdj='RELEASE=1 grdlu java gen prepEclipse && terminal-notifier -title "Success" -message "Build complete" || terminal-notifier -title "Build failed" -message ""'
-alias grdjs='RELEASE=1 grdlu gen js buildWebSvcJs start && terminal-notifier -title "Success" -message "Build complete" || terminal-notifier -title "Build failed" -message ""'
-alias grdjjs='RELEASE=1 grdlu java gen prepEclipse js buildWebSvcJs start && terminal-notifier -title "Success" -message "Build complete" || terminal-notifier -title "Build failed" -message ""'
-alias sbc='startbelcad'
-alias spbc='stopbelcad'
-alias grss='gradle stop && gradle start'
-alias grsp='gradle stop'
-alias grpc='$REPO_NEWTON/bin/precommit.py'
-alias pf='pushToBuildFarm'
-alias pfu='pushToBuildFarm @uitest'
-alias pfp='pushToBuildFarm @precommit @uitest'
-alias pfa='pushToBuildFarm @precommit @uitest @mocha @longtest'
-alias grtd='gradle tidy'
-alias grtp='gradle tidy && $REPO_NEWTON/bin/precommit.py'
-alias grzc='gradle zookeeperClean --stacktrace'
-alias grcn='gradle clean'
-alias grec='gradle prepEclipse --stacktrace'
-alias gree='gradle prepEclipse; btEnvEclipse'
-alias ggre='gradle && gradle prepEclipse; btEnvEclipse'
-alias grup='gradle runDocumentUpgrade'
-alias grfs='gradle linkStaticBelScript'
-alias grsz='gradle runCodeGenForSerializables'
-alias grtsz='grunt generateSerializables'
-alias cni='cleanNodeIconv'
-alias rrab='brew services restart rabbitmq'
-alias drab='docker run -d --rm --name rabbitmq --hostname localhost -p 4369:4369 -p 5671:5671 -p 5672:5672 -p 15672:15672 -p 25672:25672 rabbitmq:3.7-management-alpine'
-alias ddraw='startDrawingDocker'
-alias cm='cp -r $STAGE/test/results/* ~/temp/cachedTestResults/; cleanMost'
-alias ce='cp -r $STAGE/test/results/* ~/temp/cachedTestResults/; cleanEverything'
-alias fixgrunt='diskImageUmountAll; rm ~/build_tools/diskimage/onshape-javascript_*; source buildenv.bash'
+alias alog='aws sso login --profile'
+alias alogk='aws sso login --profile kotoole'
+
+# alias gr='gradle'
+# alias grst='gradle start && terminal-notifier -title "Success" -message "Build complete" || terminal-notifier -title "Build failed" -message ""'
+# alias grd='RELEASE=1 grdlu start && terminal-notifier -title "Success" -message "Build complete" || terminal-notifier -title "Build failed" -message ""'
+# alias grdj='RELEASE=1 grdlu java gen prepEclipse && terminal-notifier -title "Success" -message "Build complete" || terminal-notifier -title "Build failed" -message ""'
+# alias grdjs='RELEASE=1 grdlu gen js buildWebSvcJs start && terminal-notifier -title "Success" -message "Build complete" || terminal-notifier -title "Build failed" -message ""'
+# alias grdjjs='RELEASE=1 grdlu java gen prepEclipse js buildWebSvcJs start && terminal-notifier -title "Success" -message "Build complete" || terminal-notifier -title "Build failed" -message ""'
+# alias sbc='startbelcad'
+# alias spbc='stopbelcad'
+# alias grss='gradle stop && gradle start'
+# alias grsp='gradle stop'
+# alias grpc='$REPO_NEWTON/bin/precommit.py'
+# alias pf='pushToBuildFarm'
+# alias pfu='pushToBuildFarm @uitest'
+# alias pfp='pushToBuildFarm @precommit @uitest'
+# alias pfa='pushToBuildFarm @precommit @uitest @mocha @longtest'
+# alias grtd='gradle tidy'
+# alias grtp='gradle tidy && $REPO_NEWTON/bin/precommit.py'
+# alias grzc='gradle zookeeperClean --stacktrace'
+# alias grcn='gradle clean'
+# alias grec='gradle prepEclipse --stacktrace'
+# alias gree='gradle prepEclipse; btEnvEclipse'
+# alias ggre='gradle && gradle prepEclipse; btEnvEclipse'
+# alias grup='gradle runDocumentUpgrade'
+# alias grfs='gradle linkStaticBelScript'
+# alias grsz='gradle runCodeGenForSerializables'
+# alias grtsz='grunt generateSerializables'
+# alias cni='cleanNodeIconv'
+# alias rrab='brew services restart rabbitmq'
+# alias drab='docker run -d --rm --name rabbitmq --hostname localhost -p 4369:4369 -p 5671:5671 -p 5672:5672 -p 15672:15672 -p 25672:25672 rabbitmq:3.7-management-alpine'
+# alias ddraw='startDrawingDocker'
+# alias cm='cp -r $STAGE/test/results/* ~/temp/cachedTestResults/; cleanMost'
+# alias ce='cp -r $STAGE/test/results/* ~/temp/cachedTestResults/; cleanEverything'
+# alias fixgrunt='diskImageUmountAll; rm ~/build_tools/diskimage/onshape-javascript_*; source buildenv.bash'
+# alias checkjava='tidy; gradle java:codeChecker java:pmd'
 
 alias xcc='buildCppServer'
 alias cpp='buildCppServer && terminal-notifier -title "Success" -message "Compilation complete" || terminal-notifier -title "Compilation failed" -message ""'
 alias xcap='osascript ~/Onshape/attach-to-bsservers.scpt'
 alias dumps='open /System/Applications/Utilities/Console.app'
 
-alias grt='grunt'
-alias grsv="lsof -i :8000 | grep LISTEN | sed 's/node[ ]*\([0-9]*\).*/\1/' | xargs kill && grunt serve --webpack"
-alias grqs='grunt quickServe'
-alias grqsc='PROXY_TARGET_HOST=https://demo-c.dev.onshape.com grunt quickServe --webpack'
-alias grqss='PROXY_TARGET_HOST=https://staging.dev.onshape.com grunt quickServe --webpack'
-alias grsvc='PROXY_TARGET_HOST=https://demo-c.dev.onshape.com grunt serve --webpack'
-alias grsvs='PROXY_TARGET_HOST=https://staging.dev.onshape.com grunt serve --webpack'
-alias ypc='yarn precommit --target=http://localhost.dev.onshape.com:8000'
-alias yck='yarn checkJsCode && npx tsc --noEmit --project $REPO_NEWTON/project/web/tsconfig.json'
-alias grw='npx tsc --noEmit --project $REPO_NEWTON/project/web/tsconfig.json'
-alias jest="yarn jest --config=project/web/ts/jest.config.js"
-alias grttd='grunt tidy || grunt tidy'
-alias grtc='grunt copy'
-alias grtjs='grunt karma:ci'
-alias goog='grunt googlecc:release'
-alias gjs='grunt gjslint'
-alias jsun='grunt karma:newton_htmlCoverage'
-alias jsuw='grunt karma:woolsthorpe_htmlCoverage'
-alias grtes='grunt eslint:typescript --fix'
-alias grtxx='grunt xgettext --fix'
-alias grtfx='grunt eslint:typescript --fix; grunt xgettext --fix; tidy'
-alias kill00="lsof -i :8000 | grep LISTEN | sed 's/node[ ]*\([0-9]*\).*/\1/' | xargs kill"
-alias pt00='ptor --target=http://localhost.onshape.io:8000'
-alias ptoc='ptor --target=https://demo-c.dev.onshape.com/'
-alias grtc='grunt tests:configurations'
-alias timer='~/repos/timerdisplay/server.js $STAGE/WebSvc/logs/timer.log & sleep 1; open -a Google\ Chrome http://localhost:8088/'
-alias killtimer="lsof -i :8088 | grep LISTEN | sed 's/node[ ]*\([0-9]*\).*/\1/' | xargs kill"
+# alias grt='grunt'
+# alias grsv="lsof -i :8000 | grep LISTEN | sed 's/node[ ]*\([0-9]*\).*/\1/' | xargs kill && grunt serve --webpack"
+# alias grqs='grunt quickServe'
+# alias grqsc='PROXY_TARGET_HOST=https://demo-c.dev.onshape.com grunt quickServe --webpack'
+# alias grqss='PROXY_TARGET_HOST=https://staging.dev.onshape.com grunt quickServe --webpack'
+# alias grsvc='PROXY_TARGET_HOST=https://demo-c.dev.onshape.com grunt serve --webpack'
+# alias grsvs='PROXY_TARGET_HOST=https://staging.dev.onshape.com grunt serve --webpack'
+# alias ypc='yarn precommit --target=http://localhost.dev.onshape.com:8000'
+# alias yck='yarn checkJsCode && npx tsc --noEmit --project $REPO_NEWTON/project/web/tsconfig.json'
+# alias grw='npx tsc --noEmit --project $REPO_NEWTON/project/web/tsconfig.json'
+# alias jest="yarn jest --config=project/web/ts/jest.config.js"
+# alias grttd='grunt tidy || grunt tidy'
+# alias grtc='grunt copy'
+# alias grtjs='grunt karma:ci'
+# alias goog='grunt googlecc:release'
+# alias gjs='grunt gjslint'
+# alias jsun='grunt karma:newton_htmlCoverage'
+# alias jsuw='grunt karma:woolsthorpe_htmlCoverage'
+# alias grtes='grunt eslint:typescript --fix'
+# alias grtxx='grunt xgettext --fix'
+# alias grtfx='grunt eslint:typescript --fix; grunt xgettext --fix; tidy'
+# alias kill00="lsof -i :8000 | grep LISTEN | sed 's/node[ ]*\([0-9]*\).*/\1/' | xargs kill"
+# alias pt00='ptor --target=http://localhost.onshape.io:8000'
+# alias ptoc='ptor --target=https://demo-c.dev.onshape.com/'
+# alias grtc='grunt tests:configurations'
+# alias timer='~/repos/timerdisplay/server.js $STAGE/WebSvc/logs/timer.log & sleep 1; open -a Google\ Chrome http://localhost:8088/'
+# alias killtimer="lsof -i :8088 | grep LISTEN | sed 's/node[ ]*\([0-9]*\).*/\1/' | xargs kill"
 
-alias md='mongodump -o ~/temp/mongodump && mongoDropAll'
-alias mda='mongoDropAll && rm -r $STAGE/mongodb'
-alias mr='mongorestore --drop ~/temp/mongodump'
-alias mrb='mongorestore --drop ~/temp/emptyMongo'
+# alias md='mongodump -o ~/temp/mongodump && mongoDropAll'
+# alias mda='mongoDropAll && rm -r $STAGE/mongodb'
+# alias mr='mongorestore --drop ~/temp/mongodump'
+# alias mrb='mongorestore --drop ~/temp/emptyMongo'
 
-# alias zkin='java -jar ~/Onshape/zipkin/zipkin.jar'
-alias zkc='stopZookeeperIfRunning && startZookeeper && zk clean'
+# # alias zkin='java -jar ~/Onshape/zipkin/zipkin.jar'
+# alias zkc='stopZookeeperIfRunning && startZookeeper && zk clean'
 
-alias jv='"${JAVA_HOME}/bin/java" -classpath ".:${javaSerializeClassPath}"'
-alias jc='javac -classpath ".:${javaSerializeClassPath}::${antlrCompletePath}"'
-alias grfd='gradle generateFsDoc && open -a Google\ Chrome $STAGE/build/web/FsDoc/library.html'
-alias grtfd='grunt markdownFsDoc'
-alias grtfdo='grunt markdownFsDoc && cp $REPO_NEWTON/project/web/FsDoc/fs-doc.css $STAGE/build/web/FsDoc/ && open -a Google\ Chrome $STAGE/build/web/FsDoc/index.html'
-alias ofd='cp $REPO_NEWTON/project/web/FsDoc/fs-doc.css $STAGE/build/web/FsDoc/ && open -a Google\ Chrome $STAGE/build/web/FsDoc/library.html'
-alias cfd='cp $STAGE/build/web/FsDoc/library.html $STAGE/WebSvc/webapps/root/FsDoc/library.html && cp $REPO_NEWTON/project/web/FsDoc/fs-doc.css $STAGE/build/web/FsDoc/ && cp $REPO_NEWTON/project/web/FsDoc/fs-doc.css $STAGE/WebSvc/webapps/root/FsDoc/fs-doc.css && open -a "Google Chrome"'
-alias cfdd='cp $STAGE/build/web/FsDoc/library.html $STAGE/WebSvc/webapps/root/FsDoc/library.html && cp $REPO_NEWTON/project/web/FsDoc/fs-doc.css $STAGE/build/web/FsDoc/ && cp $REPO_NEWTON/project/web/FsDoc/fs-doc.css $STAGE/WebSvc/webapps/root/FsDoc/fs-doc.css && open -a Google\ Chrome $STAGE/WebSvc/webapps/root/FsDoc/library.html'
+# alias jv='"${JAVA_HOME}/bin/java" -classpath ".:${javaSerializeClassPath}"'
+# alias jc='javac -classpath ".:${javaSerializeClassPath}::${antlrCompletePath}"'
+# alias grfd='gradle generateFsDoc && open -a Google\ Chrome $STAGE/build/web/FsDoc/library.html'
+# alias grtfd='grunt markdownFsDoc'
+# alias grtfdo='grunt markdownFsDoc && cp $REPO_NEWTON/project/web/FsDoc/fs-doc.css $STAGE/build/web/FsDoc/ && open -a Google\ Chrome $STAGE/build/web/FsDoc/index.html'
+# alias ofd='cp $REPO_NEWTON/project/web/FsDoc/fs-doc.css $STAGE/build/web/FsDoc/ && open -a Google\ Chrome $STAGE/build/web/FsDoc/library.html'
+# alias cfd='cp $STAGE/build/web/FsDoc/library.html $STAGE/WebSvc/webapps/root/FsDoc/library.html && cp $REPO_NEWTON/project/web/FsDoc/fs-doc.css $STAGE/build/web/FsDoc/ && cp $REPO_NEWTON/project/web/FsDoc/fs-doc.css $STAGE/WebSvc/webapps/root/FsDoc/fs-doc.css && open -a "Google Chrome"'
+# alias cfdd='cp $STAGE/build/web/FsDoc/library.html $STAGE/WebSvc/webapps/root/FsDoc/library.html && cp $REPO_NEWTON/project/web/FsDoc/fs-doc.css $STAGE/build/web/FsDoc/ && cp $REPO_NEWTON/project/web/FsDoc/fs-doc.css $STAGE/WebSvc/webapps/root/FsDoc/fs-doc.css && open -a Google\ Chrome $STAGE/WebSvc/webapps/root/FsDoc/library.html'
 
-alias sshbf='ssh $(bf node account)'
+# alias sshbf='ssh $(bf node account)'
 
-alias rbt='ag TODOK; rbt'
-alias rbp='ag TODOK; rbt post -o'
-alias rbpost='ag TODOK; rbt post -g -o --parent=$(git merge-base master head)'
-alias rbu='ag TODOK; rbt post -r'
-alias rbupdate='ag TODOK; (echo "y" | rbt post --parent=$(git merge-base master head) -u -o)'
-alias rbst='rbt status'
+# alias rbt='ag TODOK; rbt'
+# alias rbp='ag TODOK; rbt post -o'
+# alias rbpost='ag TODOK; rbt post -g -o --parent=$(git merge-base master head)'
+# alias rbu='ag TODOK; rbt post -r'
+# alias rbupdate='ag TODOK; (echo "y" | rbt post --parent=$(git merge-base master head) -u -o)'
+# alias rbst='rbt status'
 
 # alias ere='open -a Sublime\ Text\ 2 ~/Documents/sed/replacements.py'
 # alias re='py ~/Documents/sed/rename.py'
@@ -213,10 +210,10 @@ alias hl='history | less'
 alias now='date +"%T"'
 alias day='date +"%d-%m-%Y"'
 alias tf='tail -f'
-alias tfb='tail -f $STAGE/WebSvc/logs/btserver.log'
-alias sbb='open -a Sublime\ Text $STAGE/WebSvc/logs/btserver.log'
-alias sup='open -a Sublime\ Text $STAGE/WebSvc/logs/upgrade.log'
-alias fbb='cat $STAGE/WebSvc/logs/btserver.log | grep -i'
+# alias tfb='tail -f $STAGE/WebSvc/logs/btserver.log'
+# alias sbb='open -a Sublime\ Text $STAGE/WebSvc/logs/btserver.log'
+# alias sup='open -a Sublime\ Text $STAGE/WebSvc/logs/upgrade.log'
+# alias fbb='cat $STAGE/WebSvc/logs/btserver.log | grep -i'
 alias fhs='find . -type f -name'
 alias fh='find . -type f -iname'
 alias fns='find $REPO_NEWTON -type f -name'
@@ -844,18 +841,10 @@ function port_status() {
 
 # for zsh
 setopt PROMPT_SUBST
-export PS1="%B%f\$(git_status)%b\$(git_branch)%B\$(port_status)%F{blue}%1d/%b%f $ "
+export PS1="%B%f\$(git_status)%b\$(git_branch)%B\$(port_status)%F{blue}%1~/%b%f $ "
 
 
 export BASH_SILENCE_DEPRECATION_WARNING=1
-
-export PATH=/usr/local/heroku/bin:$PATH
-export PATH=/usr/local/autoconf/bin:$PATH
-export PATH=$PATH:/Applications/Postgres.app/Contents/Versions/9.3/bin
-export PATH=$PATH:"/Applications/microchip/xc16/v1.24/bin"
-export PATH=$PATH:/usr/local/bin
-export PATH=$PATH:~/Library/Python/2.7/lib/python/site-packages
-export PATH="~/Library/Python/3.8/bin:${PATH}"
 
 # export ALWAYS_LINT_JS=false
 export CLICOLOR=1
@@ -863,18 +852,18 @@ export LSCOLORS=gxBxhxDxfxhxhxhxhxcxcx
 export BASH_SILENCE_DEPRECATION_WARNING=1
 export XCODEBUILD=0
 export USE_CCACHE=1
-export ARCHFLAGS="-arch x86_64"
+export ARCHFLAGS="-arch arm64"
 export EDITOR='subl -w'
-export GIT_SEQUENCE_EDITOR='open -a Sublime\ Text -w'
+export GIT_SEQUENCE_EDITOR='subl -w'
 export PROJECT_HOME=$HOME/repos
-export PIC1=p24FJ128GB206
-export PIC2=p24FJ64GB002
+# export PIC1=p24FJ128GB206
+# export PIC2=p24FJ64GB002
 export USE_LIBPCRE=yes
-export BTI_DISABLE_HEARTBEATS=1
-export BTI_ENABLE_TIMERS=1
-export BS_DEBUG_OPTIONS=SIGNAL_STACK_UNMODIFIED
-export SHOULD_INCLUDE_GRADLE_PLUGINS=0
-export SKIP_DRAWING=1
+# export BTI_DISABLE_HEARTBEATS=1
+# export BTI_ENABLE_TIMERS=1
+# export BS_DEBUG_OPTIONS=SIGNAL_STACK_UNMODIFIED
+# export SHOULD_INCLUDE_GRADLE_PLUGINS=0
+# export SKIP_DRAWING=1
 # cppRegisterWithFirewall
 # export RELEASE=1
 export ENABLE_THUMBNAIL_SERVICE=1
@@ -894,4 +883,14 @@ ulimit -c unlimited
 # For debugging local code on other machines
 # source ~/setup_private_ip.sh
 
+export PATH=/usr/local/heroku/bin:$PATH
+export PATH=/usr/local/autoconf/bin:$PATH
 export PATH="$HOME/.yarn/bin:$PATH"
+export PATH="$HOME/Library/Python/3.8/bin:${PATH}"
+export PATH="$HOME/Library/Python/3.9/bin:$PATH"
+export PATH="$HOME/.ebcli-virtual-env/executables:$PATH"
+
+export PATH=$PATH:/Applications/Postgres.app/Contents/Versions/9.3/bin
+export PATH=$PATH:"/Applications/microchip/xc16/v1.24/bin"
+export PATH=$PATH:/usr/local/bin
+export PATH=$PATH:$HOME/Library/Python/2.7/lib/python/site-packages
