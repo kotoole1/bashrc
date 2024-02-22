@@ -8,6 +8,7 @@ alias wt='open -a /applications/WebStorm.app'
 alias ecl='btEnvEclipse'
 # alias xc='open -a /Applications/apps.noindex/Xcode-11.1.app'
 alias cl='open -a /Applications/CLion.app'
+alias cx='/Applications/CLion.app/Contents/MacOS/clion ~/repos/PreForm --line 1'
 # alias xcn='open -a /Applications/apps.noindex/Xcode-11.1.app $STAGE/build/cppServer/DebugXcodeCCache/BTcppServer.xcodeproj'
 alias chr='open -a Google\ Chrome'
 alias ai='sudo /Applications/Adobe\ Illustrator\ CS6/Adobe\ Illustrator.app/Contents/MacOS/Adobe\ Illustrator'
@@ -24,8 +25,10 @@ alias ll='ls -l'
 
 alias cdnn='cd ~/repos/newton'
 # alias cdss='cd ~/stage'
-# alias cdn='cd $REPO_NEWTON'
-# alias cds='cd $STAGE'
+
+alias cds='cd ~/repos/PreForm/cmake-build-debug'
+alias cdp='cd ~/repos/PreForm'
+alias cdn='cd ~/repos/PreForm'
 alias cdm='cd ~/repos/mcdm-units'
 alias cda='cd ~/repos/aoe-sharps-docker/'
 alias cdr='cd ~/repos/roll'
@@ -87,6 +90,7 @@ alias gpl='git pull'
 alias gpsu='git push --set-upstream origin $(git rev-parse --abbrev-ref HEAD)'
 alias gph='git pull heroku master && git commit -m "merging from heroku" && git push heroku master'
 alias gsh='git show'
+alias gsub='git submodule update --init --recursive'
 #git config --global alias.rf "reflog --pretty=format:'%gd %Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
 alias grf='git rf'
 alias gap='git add -p'
@@ -95,8 +99,9 @@ alias gsmr='git submodule foreach --recursive git reset --hard'
 alias gsmu='git submodule update --force --init --recursive'
 alias ggame='/usr/local/bin/git-game-1.1/git-game'
 alias rprev='git checkout master -- $REPO_NEWTON/project/previous-templates'
-alias pull='pullmerge master -m "merging from master branch"'
-alias pullr='pullmerge master --rebase'
+# alias pull='pullmerge master -m "merging from master branch"'
+alias pull='git pull origin master --rebase'
+# alias pullr='pullmerge master --rebase'
 alias hpr='git push && hub pull-request -m "$(git log -1 --pretty=%B)" | pbcopy && pbpaste'
 alias hprm='hub pull-request -m'
 alias pullrc='cd ~/repos/bashrc && git pull origin master && cd -'
@@ -106,6 +111,8 @@ alias mb='git merge-base master head'
 
 alias alog='aws sso login --profile'
 alias alogk='aws sso login --profile kotoole'
+
+alias cmp='cmake -DPP_QT5_DIRECTORY=~/Qt/5.15.2/clang_64 -DPP_BUILD_TYPE=testing -DCMAKE_BUILD_TYPE=Debug -G Ninja ..'
 
 # alias gr='gradle'
 # alias grst='gradle start && terminal-notifier -title "Success" -message "Build complete" || terminal-notifier -title "Build failed" -message ""'
@@ -409,15 +416,18 @@ function ffc()
 
 alias ag='ag -S'
 
-function af()
+function ag_find()
 {
-    ag -l ${@:2} --nocolor --unrestricted "." -G "${1}"
+    # ag -l ${@:2} --nocolor --unrestricted "." -G "${1}"
+    ag -ug "${1}"
 }
+alias af='noglob ag_find'
 
-function ff()
+function file_find()
 {
-    find . -type f -iname *"${1}"*
+    find . -type f -iname "*${1}*"
 }
+alias ff='noglob file_find'
 
 function antlr4()
 { 
@@ -841,8 +851,8 @@ function port_status() {
 
 # for zsh
 setopt PROMPT_SUBST
-export PS1="%B%f\$(git_status)%b\$(git_branch)%B\$(port_status)%F{blue}%1~/%b%f $ "
-
+# export PS1="%B%f\$(git_status)%b\$(git_branch)%B\$(port_status)%F{blue}%1~/%b%f $ " # Too slow
+export PS1="%B%f%b\$(git_branch)%B%F{blue}%1~/%b%f $ "
 
 export BASH_SILENCE_DEPRECATION_WARNING=1
 
@@ -889,6 +899,7 @@ export PATH="$HOME/.yarn/bin:$PATH"
 export PATH="$HOME/Library/Python/3.8/bin:${PATH}"
 export PATH="$HOME/Library/Python/3.9/bin:$PATH"
 export PATH="$HOME/.ebcli-virtual-env/executables:$PATH"
+export PATH="/Applications/Sublime Text.app/Contents/SharedSupport/bin:$PATH"
 
 export PATH=$PATH:/Applications/Postgres.app/Contents/Versions/9.3/bin
 export PATH=$PATH:"/Applications/microchip/xc16/v1.24/bin"
