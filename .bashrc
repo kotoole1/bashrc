@@ -14,6 +14,8 @@ alias chr='open -a Google\ Chrome'
 alias ai='sudo /Applications/Adobe\ Illustrator\ CS6/Adobe\ Illustrator.app/Contents/MacOS/Adobe\ Illustrator'
 alias ees='open -a Sublime\ Text ~/Library/Application\ Support/espanso/match/base.yml'
 alias vs='open -a Visual\ Studio\ Code.app'
+alias pf='open -a ~/repos/PreForm/cmake-build-debug/app/PreForm/output/PreForm.app'
+alias hp='~/repos/PreForm/cmake-build-debug/app/PreFormCli/output/PreFormCli.app'
 
 # alias oct='octave --force-gui &'
 alias finder='open -a Finder .'
@@ -100,7 +102,7 @@ alias gsmu='git submodule update --force --init --recursive'
 alias ggame='/usr/local/bin/git-game-1.1/git-game'
 alias rprev='git checkout master -- $REPO_NEWTON/project/previous-templates'
 # alias pull='pullmerge master -m "merging from master branch"'
-alias pull='git pull origin master --rebase'
+alias pull='git pull origin master'
 # alias pullr='pullmerge master --rebase'
 alias hpr='git push && hub pull-request -m "$(git log -1 --pretty=%B)" | pbcopy && pbpaste'
 alias hprm='hub pull-request -m'
@@ -112,7 +114,8 @@ alias mb='git merge-base master head'
 alias alog='aws sso login --profile'
 alias alogk='aws sso login --profile kotoole'
 
-alias cmp='cmake -DPP_QT5_DIRECTORY=~/Qt/5.15.2/clang_64 -DPP_BUILD_TYPE=testing -DCMAKE_BUILD_TYPE=Debug -G Ninja ..'
+alias cmp='cmake -DPP_QT5_DIRECTORY=~/Qt/5.15.2/clang_64 -DPP_BUILD_TYPE=testing -DCMAKE_BUILD_TYPE=Release -G Ninja ~/repos/PreForm'
+alias cmpd='cmake -DPP_QT5_DIRECTORY=~/Qt/5.15.2/clang_64 -DPP_BUILD_TYPE=testing -DCMAKE_BUILD_TYPE=Debug -G Ninja ~/repos/PreForm'
 
 # alias gr='gradle'
 # alias grst='gradle start && terminal-notifier -title "Success" -message "Build complete" || terminal-notifier -title "Build failed" -message ""'
@@ -414,7 +417,7 @@ function ffc()
     ag -S -l --nocolor . -G "${1}" | xargs | pbcopy
 }
 
-alias ag='ag -S'
+alias ag='noglob ag -S'
 
 function ag_find()
 {
