@@ -9,13 +9,15 @@ alias ecl='btEnvEclipse'
 # alias xc='open -a /Applications/apps.noindex/Xcode-11.1.app'
 alias cl='open -a /Applications/CLion.app'
 alias cx='/Applications/CLion.app/Contents/MacOS/clion ~/repos/PreForm --line 1'
+alias xc='/Applications/CLion.app/Contents/MacOS/clion ~/repos/PreForm --line 1'
+alias qt='open -a ~/Qt/Qt\ Creator.app'
 # alias xcn='open -a /Applications/apps.noindex/Xcode-11.1.app $STAGE/build/cppServer/DebugXcodeCCache/BTcppServer.xcodeproj'
 alias chr='open -a Google\ Chrome'
 alias ai='sudo /Applications/Adobe\ Illustrator\ CS6/Adobe\ Illustrator.app/Contents/MacOS/Adobe\ Illustrator'
 alias ees='open -a Sublime\ Text ~/Library/Application\ Support/espanso/match/base.yml'
 alias vs='open -a Visual\ Studio\ Code.app'
-alias pf='open -a ~/repos/PreForm/cmake-build-debug/app/PreForm/output/PreForm.app'
-alias hp='~/repos/PreForm/cmake-build-debug/app/PreFormCli/output/PreFormCli.app'
+alias pf='open -a ~/repos/PreForm/cmake-build-relwithdebinfo/app/PreForm/output/PreForm.app'
+alias hp='~/repos/PreForm/cmake-build-relwithdebinfo/app/PreFormCli/output/PreFormCli.app'
 
 # alias oct='octave --force-gui &'
 alias finder='open -a Finder .'
@@ -28,7 +30,7 @@ alias ll='ls -l'
 alias cdnn='cd ~/repos/newton'
 # alias cdss='cd ~/stage'
 
-alias cds='cd ~/repos/PreForm/cmake-build-debug'
+alias cds='cd ~/repos/PreForm/cmake-build-relwithdebinfo'
 alias cdp='cd ~/repos/PreForm'
 alias cdn='cd ~/repos/PreForm'
 alias cdm='cd ~/repos/mcdm-units'
@@ -243,8 +245,8 @@ alias lugg='nslookup www.google.com -c 1 -i 0.5 www.google.com >/dev/null && ech
 # alias hostlookup='host -t srv _ldap._tcp.google.com'
 alias size='du -sh'
 
-alias create-company="onshape create-company --seats 10 --admins 2 --release-management --eula --name"
-alias create-enterprise="onshape create-enterprise --seats 10 --admins 2 --release-management --eula --name"
+# alias create-company="onshape create-company --seats 10 --admins 2 --release-management --eula --name"
+# alias create-enterprise="onshape create-enterprise --seats 10 --admins 2 --release-management --eula --name"
 
 alias ydl='youtube-dl'
 alias ydl3='youtube-dl --extract-audio --audio-format mp3 --audio-quality 0'
@@ -432,25 +434,25 @@ function file_find()
 }
 alias ff='noglob file_find'
 
-function antlr4()
-{ 
-    "${JAVA_HOME}/bin/java" -classpath "${antlrCompletePath}" org.antlr.v4.Tool "$@";
-}
+# function antlr4()
+# { 
+#     "${JAVA_HOME}/bin/java" -classpath "${antlrCompletePath}" org.antlr.v4.Tool "$@";
+# }
 
 function vvx()
 {
     eval "pbpaste | xargs $@"
 }
 
-# Document extractor
-function restore()
-{
-    if [[ "$2" == "--grdl" ]]; then
-        restoreDump "$1" --remap "btadmin@onshape.com" -m && RELESE=1 grdl zookeeperClean --stacktrace && grdlu java gen js buildWebSvcJs start
-    else
-        restoreDump "$1" --remap "btadmin@onshape.com" -m && grzc && gradle && startbelcad
-    fi
-}
+# # Document extractor
+# function restore()
+# {
+#     if [[ "$2" == "--grdl" ]]; then
+#         restoreDump "$1" --remap "btadmin@onshape.com" -m && RELESE=1 grdl zookeeperClean --stacktrace && grdlu java gen js buildWebSvcJs start
+#     else
+#         restoreDump "$1" --remap "btadmin@onshape.com" -m && grzc && gradle && startbelcad
+#     fi
+# }
 
 function giff()
 {
@@ -899,8 +901,9 @@ ulimit -c unlimited
 export PATH=/usr/local/heroku/bin:$PATH
 export PATH=/usr/local/autoconf/bin:$PATH
 export PATH="$HOME/.yarn/bin:$PATH"
-export PATH="$HOME/Library/Python/3.8/bin:${PATH}"
+export PATH="$HOME/Library/Python/3.8/bin:$PATH"
 export PATH="$HOME/Library/Python/3.9/bin:$PATH"
+export PATH="$HOME/Library/Python/3.10/bin:$PATH"
 export PATH="$HOME/.ebcli-virtual-env/executables:$PATH"
 export PATH="/Applications/Sublime Text.app/Contents/SharedSupport/bin:$PATH"
 
@@ -908,3 +911,4 @@ export PATH=$PATH:/Applications/Postgres.app/Contents/Versions/9.3/bin
 export PATH=$PATH:"/Applications/microchip/xc16/v1.24/bin"
 export PATH=$PATH:/usr/local/bin
 export PATH=$PATH:$HOME/Library/Python/2.7/lib/python/site-packages
+export PATH=$PATH:"/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
