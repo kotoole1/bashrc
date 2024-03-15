@@ -109,7 +109,7 @@ alias pull='git pull origin master'
 alias hpr='git push && hub pull-request -m "$(git log -1 --pretty=%B)" | pbcopy && pbpaste'
 alias hprm='hub pull-request -m'
 alias pullrc='cd ~/repos/bashrc && git pull origin master && cd -'
-alias pushrc='cd ~/repos/bashrc && git commit -a -m "commit" && git pull origin master && git push origin master && cd -'
+alias pushrc='cd ~/repos/bashrc && git commit -a -m "commit"; git pull origin master && git push origin master; cd -'
 # Usage: git diff $(mb)..head
 alias mb='git merge-base master head'
 
