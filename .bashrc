@@ -17,7 +17,9 @@ alias ai='sudo /Applications/Adobe\ Illustrator\ CS6/Adobe\ Illustrator.app/Cont
 alias ees='open -a Sublime\ Text ~/Library/Application\ Support/espanso/match/base.yml'
 alias vs='open -a Visual\ Studio\ Code.app'
 alias pf='open -a ~/repos/PreForm/cmake-build-relwithdebinfo/app/PreForm/output/PreForm.app'
-alias hp='~/repos/PreForm/cmake-build-relwithdebinfo/app/PreFormCli/output/PreFormCli.app'
+alias hp='~/repos/PreForm/cmake-build-relwithdebinfo/app/PreFormCli/output/PreFormCli.app/Contents/MacOS/PreFormCli'
+alias hpr='~/repos/PreForm/cmake-build-relwithdebinfo/app/PreFormCli/output/PreFormCli.app/Contents/MacOS/PreFormCli run'
+alias st='bin/python3.10 ~/repos/PreForm/tests/systemtest/systemtest.py --workspace ~/systemtests-workspace'
 
 # alias oct='octave --force-gui &'
 alias finder='open -a Finder .'
@@ -106,8 +108,8 @@ alias rprev='git checkout master -- $REPO_NEWTON/project/previous-templates'
 # alias pull='pullmerge master -m "merging from master branch"'
 alias pull='git pull origin master'
 # alias pullr='pullmerge master --rebase'
-alias hpr='git push && hub pull-request -m "$(git log -1 --pretty=%B)" | pbcopy && pbpaste'
-alias hprm='hub pull-request -m'
+# alias hpr='git push && hub pull-request -m "$(git log -1 --pretty=%B)" | pbcopy && pbpaste'
+# alias hprm='hub pull-request -m'
 alias pullrc='cd ~/repos/bashrc && git pull origin master && cd -'
 alias pushrc='cd ~/repos/bashrc && git commit -a -m "commit"; git pull origin master && git push origin master; cd -'
 # Usage: git diff $(mb)..head
@@ -118,6 +120,10 @@ alias alogk='aws sso login --profile kotoole'
 
 alias cmp='cmake -DPP_QT5_DIRECTORY=~/Qt/5.15.2/clang_64 -DPP_BUILD_TYPE=testing -DCMAKE_BUILD_TYPE=Release -G Ninja ~/repos/PreForm'
 alias cmpd='cmake -DPP_QT5_DIRECTORY=~/Qt/5.15.2/clang_64 -DPP_BUILD_TYPE=testing -DCMAKE_BUILD_TYPE=Debug -G Ninja ~/repos/PreForm'
+alias cmpr='cmake -DPP_QT5_DIRECTORY=~/Qt/5.15.2/clang_64 -DPP_BUILD_TYPE=release -DCMAKE_BUILD_TYPE=Release -G Ninja ~/repos/PreForm'
+
+alias lini='cp ~/Formlabs/utils/logging-quiet.ini ~/repos/PreForm/app/PreForm/Resources/Settings/logging.ini'
+alias linall='cp ~/Formlabs/utils/logging-debug.ini ~/repos/PreForm/app/PreForm/Resources/Settings/logging.ini'
 
 # alias gr='gradle'
 # alias grst='gradle start && terminal-notifier -title "Success" -message "Build complete" || terminal-notifier -title "Build failed" -message ""'
@@ -259,7 +265,7 @@ alias r='afplay ~/repos/roll/sounds/dice-sound.mp3 & disown; python ~/repos/roll
 alias rs='python ~/repos/roll/roll.py'
 alias sz='afplay ~/repos/roll/sounds/Intellect\ devourer\ \(powerful\ 4\).mp3 & disown'
 alias sk='afplay ~/repos/roll/sounds/Good\ Janet\ Boop\ summoning\ sound.mp3 & disown'
-alias st='afplay ~/repos/roll/sounds/thunder_sound_FX-Grant_Evans-1523270250.mp3 & disown'
+# alias st='afplay ~/repos/roll/sounds/thunder_sound_FX-Grant_Evans-1523270250.mp3 & disown'
 
 # Harvard Unix
 # alias fas='ssh kso968@nice.fas.harvard.edu'
@@ -885,6 +891,8 @@ export ENABLE_THUMBNAIL_SERVICE=1
 # export 
 export JAVA_MAX_MEMORY_MB=4096
 export VIRTUAL_ENV_DISABLE_PROMPT=1
+export SYSTEMTEST_WORKSPACE="~/systemtests-workspace"
+export PF="~/repos/PreForm/"
 # export EXTERNAL_REPO=1
 ulimit -c unlimited
 
@@ -906,6 +914,7 @@ export PATH="$HOME/Library/Python/3.9/bin:$PATH"
 export PATH="$HOME/Library/Python/3.10/bin:$PATH"
 export PATH="$HOME/.ebcli-virtual-env/executables:$PATH"
 export PATH="/Applications/Sublime Text.app/Contents/SharedSupport/bin:$PATH"
+export PATH="$HOME/repos/PreForm/cmake-build-relwithdebinfo/app/PreFormCli/output:$PATH"
 
 export PATH=$PATH:/Applications/Postgres.app/Contents/Versions/9.3/bin
 export PATH=$PATH:"/Applications/microchip/xc16/v1.24/bin"
