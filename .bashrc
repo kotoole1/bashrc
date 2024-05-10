@@ -300,6 +300,10 @@ alias dj='/Users/kotoole/.virtualenvs/compCharity/bin/python /Users/kotoole/repo
 alias djr='/Users/kotoole/.virtualenvs/compCharity/bin/python /Users/kotoole/repos/compCharity/manage.py runserver'
 alias hdj='heroku run python manage.py'
 alias workoff='deactivate'
+# Usage: dxf --output="path.dxf" "originalPath.svg"
+alias dxf='python3 /Applications/Inkscape.app/Contents/Resources/share/inkscape/extensions/dxf_outlines.py'
+alias dxfall='for file in *.svg; python3 /Applications/Inkscape.app/Contents/Resources/share/inkscape/extensions/dxf_outlines.py --output="${file%.svg}.dxf" "${file}"'
+alias dxfdir='for file in *.svg; python3 /Applications/Inkscape.app/Contents/Resources/share/inkscape/extensions/dxf_outlines.py --output="../DXFs/${file%.svg}.dxf" "${file}"'
 
 alias topc='top -o cpu -s 2 -i 5'
 alias topm='top -o rsize -s 2'
