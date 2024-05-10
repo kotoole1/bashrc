@@ -20,10 +20,9 @@ alias pf='open -a ~/repos/PreForm/cmake-build-relwithdebinfo/app/PreForm/output/
 alias hp='~/repos/PreForm/cmake-build-relwithdebinfo/app/PreFormCli/output/PreFormCli.app/Contents/MacOS/PreFormCli'
 alias hpr='~/repos/PreForm/cmake-build-relwithdebinfo/app/PreFormCli/output/PreFormCli.app/Contents/MacOS/PreFormCli run'
 alias st='bin/python3.10 ~/repos/PreForm/tests/systemtest/systemtest.py --workspace ~/systemtests-workspace'
-
-# alias oct='octave --force-gui &'
-alias finder='open -a Finder .'
 alias py='python3'
+
+alias finder='open -a Finder .'
 
 alias la='ls -a'
 alias sl='ls'
@@ -38,6 +37,8 @@ alias cdn='cd ~/repos/PreForm'
 alias cdm='cd ~/repos/mcdm-units'
 alias cda='cd ~/repos/aoe-sharps-docker/'
 alias cdr='cd ~/repos/roll'
+alias cdh='cd ~/repos/PreForm/app/PreFormCli/doc/assets/'
+alias cdr='cd ~/repos/PreForm/app/PreFormServer'
 alias cdcivui="cd /Users/kotoole/Library/Application\ Support/Steam/SteamApps/common/Sid\ Meier\'s\ Civilization\ V/Civilization\ V.app/Contents/Home/Assets/DLC/UI_bc1"
 alias cdes="cd ~/Library/Application\ Support/espanso"
 
@@ -121,6 +122,10 @@ alias alogk='aws sso login --profile kotoole'
 alias cmp='cmake -DPP_QT5_DIRECTORY=~/Qt/5.15.2/clang_64 -DPP_BUILD_TYPE=testing -DCMAKE_BUILD_TYPE=Release -G Ninja ~/repos/PreForm'
 alias cmpd='cmake -DPP_QT5_DIRECTORY=~/Qt/5.15.2/clang_64 -DPP_BUILD_TYPE=testing -DCMAKE_BUILD_TYPE=Debug -G Ninja ~/repos/PreForm'
 alias cmpr='cmake -DPP_QT5_DIRECTORY=~/Qt/5.15.2/clang_64 -DPP_BUILD_TYPE=release -DCMAKE_BUILD_TYPE=Release -G Ninja ~/repos/PreForm'
+alias nl='cd ~/repos/PreForm/cmake-build-relwithdebinfo; ninja linter_check_all; cd -'
+alias nt='cd ~/repos/PreForm/cmake-build-relwithdebinfo; ninja testl cd -'
+
+alias unlockconan='~/repos/PreForm/cmake-build-relwithdebinfo/conan_wrapper.sh remove --locks; ~/repos/PreForm/cmake-build-release/conan_wrapper.sh remove --locks; ~/repos/PreForm/cmake-build-debug/conan_wrapper.sh remove --locks; ~/repos/PreForm/build/conan_wrapper.sh remove --locks;'
 
 alias lini='cp ~/Formlabs/utils/logging-quiet.ini ~/repos/PreForm/app/PreForm/Resources/Settings/logging.ini'
 alias linall='cp ~/Formlabs/utils/logging-debug.ini ~/repos/PreForm/app/PreForm/Resources/Settings/logging.ini'
@@ -264,6 +269,7 @@ alias er0='export EXTERNAL_REPO=0'
 alias r='afplay ~/repos/roll/sounds/dice-sound.mp3 & disown; python ~/repos/roll/roll.py'
 alias rs='python ~/repos/roll/roll.py'
 alias sz='afplay ~/repos/roll/sounds/Intellect\ devourer\ \(powerful\ 4\).mp3 & disown'
+alias zs='afplay ~/repos/roll/sounds/Intellect\ devourer\ \(powerful\ 4\).mp3 & disown'
 alias sk='afplay ~/repos/roll/sounds/Good\ Janet\ Boop\ summoning\ sound.mp3 & disown'
 # alias st='afplay ~/repos/roll/sounds/thunder_sound_FX-Grant_Evans-1523270250.mp3 & disown'
 
