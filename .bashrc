@@ -39,6 +39,7 @@ alias cda='cd ~/repos/aoe-sharps-docker/'
 alias cdr='cd ~/repos/roll'
 alias cdh='cd ~/repos/PreForm/app/PreFormCli/doc/assets/'
 alias cdr='cd ~/repos/PreForm/app/PreFormServer'
+alias cdrc='cd ~/repos/bashrc/'
 alias cdcivui="cd /Users/kotoole/Library/Application\ Support/Steam/SteamApps/common/Sid\ Meier\'s\ Civilization\ V/Civilization\ V.app/Contents/Home/Assets/DLC/UI_bc1"
 alias cdes="cd ~/Library/Application\ Support/espanso"
 
