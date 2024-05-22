@@ -112,6 +112,7 @@ alias pull='git pull origin master'
 # alias pullr='pullmerge master --rebase'
 # alias hpr='git push && hub pull-request -m "$(git log -1 --pretty=%B)" | pbcopy && pbpaste'
 # alias hprm='hub pull-request -m'
+# TODO: Safe to run git merge origin master instead?
 alias pullrc='cd ~/repos/bashrc && git pull origin master && cd -'
 alias pushrc='cd ~/repos/bashrc && git commit -a -m "commit"; git pull origin master && git push origin master; cd -'
 # Usage: git diff $(mb)..head
