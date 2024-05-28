@@ -19,7 +19,6 @@ alias vs='open -a Visual\ Studio\ Code.app'
 alias pf='open -a ~/repos/PreForm/cmake-build-relwithdebinfo/app/PreForm/output/PreForm.app'
 alias hp='~/repos/PreForm/cmake-build-relwithdebinfo/app/PreFormCli/output/PreFormCli.app/Contents/MacOS/PreFormCli'
 alias hpr='~/repos/PreForm/cmake-build-relwithdebinfo/app/PreFormCli/output/PreFormCli.app/Contents/MacOS/PreFormCli run'
-alias st='bin/python3.10 ~/repos/PreForm/tests/systemtest/systemtest.py --workspace ~/systemtests-workspace'
 alias py='python3'
 
 alias finder='open -a Finder .'
@@ -46,6 +45,7 @@ alias cdes="cd ~/Library/Application\ Support/espanso"
 alias gbr='git branch'
 alias gb='cur=$(git rev-parse --abbrev-ref HEAD); prev=$(git rev-parse --abbrev-ref @{-1}); git for-each-ref --sort=committerdate refs/heads/ --format="%(color:reset)  %(refname:short)|%(color:black bold)%(committerdate:relative)%(color:reset)" | column -ts"|" | sed -e "s,  ${cur} ,$(tput setaf 2)$(tput bold)* ${cur} $(tput sgr0)," | sed -e "s,  ${prev} ,$(tput setaf 3)$(tput bold)  ${prev} $(tput sgr0),";'
 alias gco='git checkout'
+alias gcos='git checkout http-server'
 alias gst='git status'
 alias gf='git fetch && git fetch --tags -f' 
 alias glog='git log'
@@ -96,7 +96,8 @@ alias guu='git branch --unset-upstream'
 alias gps='git push'
 alias gpl='git pull'
 alias gpsu='git push --set-upstream origin $(git rev-parse --abbrev-ref HEAD)'
-alias gph='git pull heroku master && git commit -m "merging from heroku" && git push heroku master'
+alias gplo='git pull origin'
+# alias gph='git pull heroku master && git commit -m "merging from heroku" && git push heroku master'
 alias gsh='git show'
 alias gsub='git submodule update --init --recursive'
 #git config --global alias.rf "reflog --pretty=format:'%gd %Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
@@ -131,6 +132,10 @@ alias unlockconan='~/repos/PreForm/cmake-build-relwithdebinfo/conan_wrapper.sh r
 
 alias lini='cp ~/Formlabs/utils/logging-quiet.ini ~/repos/PreForm/app/PreForm/Resources/Settings/logging.ini'
 alias linall='cp ~/Formlabs/utils/logging-debug.ini ~/repos/PreForm/app/PreForm/Resources/Settings/logging.ini'
+
+alias stv='$PREFORM_BUILD_PYTHON310 cmake/scripts/create_venv.py cmake-build-relwithdebinfo/venv/systemtest_venv -r tests/systemtest/requirements.txt'
+alias cdsys='cd ~/repos/PreForm/tests/systemtest'
+alias st='cmake-build-relwithdebinfo/venv/systemtest_venv/bin/python3.10 ~/repos/PreForm/tests/systemtest/systemtest.py --workspace ~/systemtests-workspace' 
 
 # alias gr='gradle'
 # alias grst='gradle start && terminal-notifier -title "Success" -message "Build complete" || terminal-notifier -title "Build failed" -message ""'
@@ -904,6 +909,7 @@ export ENABLE_THUMBNAIL_SERVICE=1
 export JAVA_MAX_MEMORY_MB=4096
 export VIRTUAL_ENV_DISABLE_PROMPT=1
 export SYSTEMTEST_WORKSPACE="~/systemtests-workspace"
+export SYSTEMTEST_HEADLESS_EXE="/Users/kevin.otoole/repos/PreForm/cmake-build-relwithdebinfo/app/PreFormCli/output/PreFormCli.app/Contents/MacOS/PreFormCli"
 export PF="~/repos/PreForm/"
 # export EXTERNAL_REPO=1
 ulimit -c unlimited
