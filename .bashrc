@@ -35,9 +35,12 @@ alias cdp='cd ~/repos/PreForm'
 alias cdn='cd ~/repos/PreForm'
 alias cdm='cd ~/repos/mcdm-units'
 alias cda='cd ~/repos/aoe-sharps-docker/'
-alias cdr='cd ~/repos/roll'
+# alias cdr='cd ~/repos/roll'
 alias cdh='cd ~/repos/PreForm/app/PreFormCli/doc/assets/'
 alias cdr='cd ~/repos/PreForm/app/PreFormServer'
+alias cdl='cd ~/repos/PreForm/app/PreFormServer/libraries'
+alias cdj='cd ~/repos/PreForm/app/PreFormServer/libraries/jslib/'
+alias cdb='cd ~/repos/PreForm/app/PreFormServer/libraries/jslib/web-demos/batchy-react'
 alias cdrc='cd ~/repos/bashrc/'
 alias cdcivui="cd /Users/kotoole/Library/Application\ Support/Steam/SteamApps/common/Sid\ Meier\'s\ Civilization\ V/Civilization\ V.app/Contents/Home/Assets/DLC/UI_bc1"
 alias cdes="cd ~/Library/Application\ Support/espanso"
@@ -135,7 +138,12 @@ alias linall='cp ~/Formlabs/utils/logging-debug.ini ~/repos/PreForm/app/PreForm/
 
 alias stv='$PREFORM_BUILD_PYTHON310 cmake/scripts/create_venv.py cmake-build-relwithdebinfo/venv/systemtest_venv -r tests/systemtest/requirements.txt'
 alias cdsys='cd ~/repos/PreForm/tests/systemtest'
-alias st='cmake-build-relwithdebinfo/venv/systemtest_venv/bin/python3.10 ~/repos/PreForm/tests/systemtest/systemtest.py --workspace ~/systemtests-workspace' 
+alias st='~/repos/PreForm/cmake-build-relwithdebinfo/venv/systemtest_venv/bin/python3.10 ~/repos/PreForm/tests/systemtest/systemtest.py --workspace ~/systemtests-workspace' 
+
+alias op='openapi-generator'
+alias opp='openapi-generator generate -i ~/repos/PreForm/app/PreFormServer/libraries/openapi.yml -g python -o ~/repos/PreForm/app/PreFormServer/libraries/pythonlib'
+alias opj='openapi-generator generate -i ~/repos/PreForm/app/PreFormServer/libraries/openapi.yml -g javascript -o ~/repos/PreForm/app/PreFormServer/libraries/jslib'
+alias opd='npx @redocly/cli build-docs ~/repos/PreForm/app/PreFormServer/libraries/openapi.yaml'
 
 # alias gr='gradle'
 # alias grst='gradle start && terminal-notifier -title "Success" -message "Build complete" || terminal-notifier -title "Build failed" -message ""'
@@ -745,7 +753,7 @@ fi
 
 # Set my editor and git editor
 # Not there by default, need to run e.g. `sudo ln -s /Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl /usr/local/bin/.`
-export EDITOR='subl -w'
+export EDITOR='/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/sub'
 export GIT_EDITOR='subl -w'
 
 # source ~/repos/gitstatus/gitstatus.plugin.sh
@@ -910,6 +918,7 @@ export JAVA_MAX_MEMORY_MB=4096
 export VIRTUAL_ENV_DISABLE_PROMPT=1
 export SYSTEMTEST_WORKSPACE="~/systemtests-workspace"
 export SYSTEMTEST_HEADLESS_EXE="/Users/kevin.otoole/repos/PreForm/cmake-build-relwithdebinfo/app/PreFormCli/output/PreFormCli.app/Contents/MacOS/PreFormCli"
+export SYSTEMTEST_PREFORMSERVER_EXE="/Users/kevin.otoole/repos/PreForm/cmake-build-relwithdebinfo/app/PreFormServer/output/PreFormServer.app/Contents/MacOS/PreFormServer"
 export PF="~/repos/PreForm/"
 # export EXTERNAL_REPO=1
 ulimit -c unlimited
@@ -933,6 +942,7 @@ export PATH="$HOME/Library/Python/3.10/bin:$PATH"
 export PATH="$HOME/.ebcli-virtual-env/executables:$PATH"
 export PATH="/Applications/Sublime Text.app/Contents/SharedSupport/bin:$PATH"
 export PATH="$HOME/repos/PreForm/cmake-build-relwithdebinfo/app/PreFormCli/output:$PATH"
+export PATH="/opt/preform-build-utils/bin-python/python:$PATH"
 
 export PATH=$PATH:/Applications/Postgres.app/Contents/Versions/9.3/bin
 export PATH=$PATH:"/Applications/microchip/xc16/v1.24/bin"
