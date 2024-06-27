@@ -19,7 +19,7 @@ alias vs='open -a Visual\ Studio\ Code.app'
 alias pf='open -a ~/repos/PreForm/cmake-build-relwithdebinfo/app/PreForm/output/PreForm.app'
 alias hp='~/repos/PreForm/cmake-build-relwithdebinfo/app/PreFormCli/output/PreFormCli.app/Contents/MacOS/PreFormCli'
 alias hpr='~/repos/PreForm/cmake-build-relwithdebinfo/app/PreFormCli/output/PreFormCli.app/Contents/MacOS/PreFormCli run'
-alias py='python3'
+alias py='python'
 
 alias finder='open -a Finder .'
 
@@ -143,7 +143,8 @@ alias st='~/repos/PreForm/cmake-build-relwithdebinfo/venv/systemtest_venv/bin/py
 alias op='openapi-generator'
 alias opp='openapi-generator generate -i ~/repos/PreForm/app/PreFormServer/libraries/openapi.yml -g python -o ~/repos/PreForm/app/PreFormServer/libraries/pythonlib'
 alias opj='openapi-generator generate -i ~/repos/PreForm/app/PreFormServer/libraries/openapi.yml -g javascript -o ~/repos/PreForm/app/PreFormServer/libraries/jslib'
-alias opd='npx @redocly/cli build-docs ~/repos/PreForm/app/PreFormServer/libraries/openapi.yaml'
+alias opd='npx @redocly/cli build-docs ~/repos/PreForm/app/PreFormServer/libraries/openapi.yml; open ~/repos/PreForm/app/PreFormServer/libraries/redoc-static.html'
+alias pfs='~/repos/PreForm/cmake-build-relwithdebinfo/app/PreFormServer/output/PreFormServer.app/Contents/MacOS/PreFormServer'
 
 # alias gr='gradle'
 # alias grst='gradle start && terminal-notifier -title "Success" -message "Build complete" || terminal-notifier -title "Build failed" -message ""'
