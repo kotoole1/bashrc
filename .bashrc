@@ -19,7 +19,8 @@ alias vs='open -a Visual\ Studio\ Code.app'
 alias pf='open -a ~/repos/PreForm/cmake-build-relwithdebinfo/app/PreForm/output/PreForm.app'
 alias hp='~/repos/PreForm/cmake-build-relwithdebinfo/app/PreFormCli/output/PreFormCli.app/Contents/MacOS/PreFormCli'
 alias hpr='~/repos/PreForm/cmake-build-relwithdebinfo/app/PreFormCli/output/PreFormCli.app/Contents/MacOS/PreFormCli run'
-alias py='python'
+alias py='python3'
+alias pip='pip3'
 
 alias finder='open -a Finder .'
 
@@ -41,6 +42,7 @@ alias cdr='cd ~/repos/PreForm/app/PreFormServer'
 alias cdl='cd ~/repos/PreForm/app/PreFormServer/libraries'
 alias cdj='cd ~/repos/PreForm/app/PreFormServer/libraries/jslib/'
 alias cdb='cd ~/repos/PreForm/app/PreFormServer/libraries/jslib/web-demos/batchy-react'
+alias cdf='cd ~/repos/Formlabs-SDK'
 alias cdrc='cd ~/repos/bashrc/'
 alias cdcivui="cd /Users/kotoole/Library/Application\ Support/Steam/SteamApps/common/Sid\ Meier\'s\ Civilization\ V/Civilization\ V.app/Contents/Home/Assets/DLC/UI_bc1"
 alias cdes="cd ~/Library/Application\ Support/espanso"
@@ -145,6 +147,7 @@ alias opp='openapi-generator generate -i ~/repos/PreForm/app/PreFormServer/libra
 alias opj='openapi-generator generate -i ~/repos/PreForm/app/PreFormServer/libraries/openapi.yml -g javascript -o ~/repos/PreForm/app/PreFormServer/libraries/jslib'
 alias opd='npx @redocly/cli build-docs ~/repos/PreForm/app/PreFormServer/libraries/openapi.yml; open ~/repos/PreForm/app/PreFormServer/libraries/redoc-static.html'
 alias pfs='~/repos/PreForm/cmake-build-relwithdebinfo/app/PreFormServer/output/PreFormServer.app/Contents/MacOS/PreFormServer'
+alias lnps='ln -sf /Users/kevin.otoole/repos/PreForm/cmake-build-relwithdebinfo/app/PreFormServer/output/PreFormServer.app/Contents/MacOS/PreFormServer ~/repos/PreForm/app/PreFormServer/libraries'
 
 # alias gr='gradle'
 # alias grst='gradle start && terminal-notifier -title "Success" -message "Build complete" || terminal-notifier -title "Build failed" -message ""'
