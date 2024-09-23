@@ -42,7 +42,7 @@ alias cdr='cd ~/repos/PreForm/app/PreFormServer'
 alias cdl='cd ~/repos/PreForm/app/PreFormServer/libraries'
 alias cdj='cd ~/repos/PreForm/app/PreFormServer/libraries/jslib/'
 alias cdb='cd ~/repos/PreForm/app/PreFormServer/libraries/jslib/web-demos/batchy-react'
-alias cdf='cd ~/repos/Formlabs-SDK'
+alias cdf='cd ~/repos/FormlabsAPI'
 alias cdrc='cd ~/repos/bashrc/'
 alias cdcivui="cd /Users/kotoole/Library/Application\ Support/Steam/SteamApps/common/Sid\ Meier\'s\ Civilization\ V/Civilization\ V.app/Contents/Home/Assets/DLC/UI_bc1"
 alias cdes="cd ~/Library/Application\ Support/espanso"
@@ -86,7 +86,7 @@ alias gds='git diff --stat'
 alias gdc='git diff --color-words'
 alias gdh='git diff HEAD'
 alias gdnh='git diff --name-only HEAD'
-alias gdb='git diff $(git merge-base master head)'
+alias gdmb='git diff $(git merge-base master head)'
 alias gdnb='git diff --name-only $(git merge-base master head)'
 alias gdom='git fetch && git diff --name-only master origin/master'
 alias grb='git rebase'
@@ -131,7 +131,7 @@ alias cmp='cmake -DPP_QT5_DIRECTORY=~/Qt/5.15.2/clang_64 -DPP_BUILD_TYPE=testing
 alias cmpd='cmake -DPP_QT5_DIRECTORY=~/Qt/5.15.2/clang_64 -DPP_BUILD_TYPE=testing -DCMAKE_BUILD_TYPE=Debug -G Ninja ~/repos/PreForm'
 alias cmpr='cmake -DPP_QT5_DIRECTORY=~/Qt/5.15.2/clang_64 -DPP_BUILD_TYPE=release -DCMAKE_BUILD_TYPE=Release -G Ninja ~/repos/PreForm'
 alias nl='cd ~/repos/PreForm/cmake-build-relwithdebinfo; ninja linter_check_all; cd -'
-alias nt='cd ~/repos/PreForm/cmake-build-relwithdebinfo; ninja testl cd -'
+alias nt='cd ~/repos/PreForm/cmake-build-relwithdebinfo; ninja test; cd -'
 
 alias unlockconan='~/repos/PreForm/cmake-build-relwithdebinfo/conan_wrapper.sh remove --locks; ~/repos/PreForm/cmake-build-release/conan_wrapper.sh remove --locks; ~/repos/PreForm/cmake-build-debug/conan_wrapper.sh remove --locks; ~/repos/PreForm/build/conan_wrapper.sh remove --locks;'
 
