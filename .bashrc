@@ -140,7 +140,7 @@ alias linall='cp ~/Formlabs/utils/logging-debug.ini ~/repos/PreForm/app/PreForm/
 
 alias stv='$PREFORM_BUILD_PYTHON310 cmake/scripts/create_venv.py cmake-build-relwithdebinfo/venv/systemtest_venv -r tests/systemtest/requirements.txt'
 alias cdsys='cd ~/repos/PreForm/tests/systemtest'
-alias st='~/repos/PreForm/cmake-build-relwithdebinfo/venv/systemtest_venv/bin/python3.10 ~/repos/PreForm/tests/systemtest/systemtest.py --workspace ~/systemtests-workspace' 
+alias st='~/repos/PreForm/cmake-build-relwithdebinfo/venv/systemtest_venv/bin/python3.10 ~/repos/PreForm/tests/systemtest/systemtest.py --workspace ~/systemtests-workspace'
 
 alias op='openapi-generator'
 alias opp='openapi-generator generate -i ~/repos/PreForm/app/PreFormServer/libraries/openapi.yml -g python -o ~/repos/PreForm/app/PreFormServer/libraries/pythonlib'
