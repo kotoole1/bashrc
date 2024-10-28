@@ -16,6 +16,7 @@ alias chr='open -a Google\ Chrome'
 alias ai='sudo /Applications/Adobe\ Illustrator\ CS6/Adobe\ Illustrator.app/Contents/MacOS/Adobe\ Illustrator'
 alias ees='open -a Sublime\ Text ~/Library/Application\ Support/espanso/match/base.yml'
 alias vs='open -a Visual\ Studio\ Code.app'
+alias cs='open -a Cursor.app'
 alias pf='open -a ~/repos/PreForm/cmake-build-relwithdebinfo/app/PreForm/output/PreForm.app'
 alias hp='~/repos/PreForm/cmake-build-relwithdebinfo/app/PreFormCli/output/PreFormCli.app/Contents/MacOS/PreFormCli'
 alias hpr='~/repos/PreForm/cmake-build-relwithdebinfo/app/PreFormCli/output/PreFormCli.app/Contents/MacOS/PreFormCli run'
@@ -42,7 +43,7 @@ alias cdr='cd ~/repos/PreForm/app/PreFormServer'
 alias cdl='cd ~/repos/PreForm/app/PreFormServer/libraries'
 alias cdj='cd ~/repos/PreForm/app/PreFormServer/libraries/jslib/'
 alias cdb='cd ~/repos/PreForm/app/PreFormServer/libraries/jslib/web-demos/batchy-react'
-alias cdf='cd ~/repos/FormlabsAPI'
+alias cdf='cd ~/repos/formlabs-api-python/'
 alias cdrc='cd ~/repos/bashrc/'
 alias cdcivui="cd /Users/kotoole/Library/Application\ Support/Steam/SteamApps/common/Sid\ Meier\'s\ Civilization\ V/Civilization\ V.app/Contents/Home/Assets/DLC/UI_bc1"
 alias cdes="cd ~/Library/Application\ Support/espanso"
@@ -95,13 +96,14 @@ alias grbi='git rebase -i'
 alias grbim='git rebase -i master'
 alias grbc='git rebase --continue'
 alias grba='git rebase --abort'
-alias syntaxrebase='git rebase --onto HEAD kot/syntax-debug^ kot/syntax-debug'
+# alias syntaxrebase='git rebase --onto HEAD kot/syntax-debug^ kot/syntax-debug'
 alias gcp='git cherry-pick'
 alias guu='git branch --unset-upstream'
-alias gps='git push'
+alias gps='ag TODOK; git push'
 alias gpl='git pull'
 alias gpsu='git push --set-upstream origin $(git rev-parse --abbrev-ref HEAD)'
 alias gplo='git pull origin'
+alias gfom='git fetch origin master:master'
 # alias gph='git pull heroku master && git commit -m "merging from heroku" && git push heroku master'
 alias gsh='git show'
 alias gsub='git submodule update --init --recursive'
@@ -124,6 +126,9 @@ alias pushrc='cd ~/repos/bashrc && git commit -a -m "commit"; git pull origin ma
 # Usage: git diff $(mb)..head
 alias mb='git merge-base master head'
 
+alias psg='ps ax | grep'
+alias ppg='ps -ef | grep'
+
 alias alog='aws sso login --profile'
 alias alogk='aws sso login --profile kotoole'
 
@@ -141,13 +146,14 @@ alias linall='cp ~/Formlabs/utils/logging-debug.ini ~/repos/PreForm/app/PreForm/
 alias stv='$PREFORM_BUILD_PYTHON310 cmake/scripts/create_venv.py cmake-build-relwithdebinfo/venv/systemtest_venv -r tests/systemtest/requirements.txt'
 alias cdsys='cd ~/repos/PreForm/tests/systemtest'
 alias st='~/repos/PreForm/cmake-build-relwithdebinfo/venv/systemtest_venv/bin/python3.10 ~/repos/PreForm/tests/systemtest/systemtest.py --workspace ~/systemtests-workspace'
-
+alias str='~/repos/PreForm/cmake-build-relwithdebinfo/venv/systemtest_venv/bin/python3.10 ~/repos/PreForm/tests/systemtest/systemtest.py --workspace ~/systemtests-workspace run  && terminal-notifier -title "Success" -message "Systemtest completed successfully" || terminal-notifier -title "Systemtest failed" -message ""'
+ 
 alias op='openapi-generator'
 alias opp='openapi-generator generate -i ~/repos/PreForm/app/PreFormServer/libraries/openapi.yml -g python -o ~/repos/PreForm/app/PreFormServer/libraries/pythonlib'
 alias opj='openapi-generator generate -i ~/repos/PreForm/app/PreFormServer/libraries/openapi.yml -g javascript -o ~/repos/PreForm/app/PreFormServer/libraries/jslib'
 alias opd='npx @redocly/cli build-docs ~/repos/PreForm/app/PreFormServer/libraries/openapi.yml; open ~/repos/PreForm/app/PreFormServer/libraries/redoc-static.html'
 alias pfs='~/repos/PreForm/cmake-build-relwithdebinfo/app/PreFormServer/output/PreFormServer.app/Contents/MacOS/PreFormServer'
-alias lnps='ln -sf /Users/kevin.otoole/repos/PreForm/cmake-build-relwithdebinfo/app/PreFormServer/output/PreFormServer.app/Contents/MacOS/PreFormServer ~/repos/PreForm/app/PreFormServer/libraries'
+alias lnps='ln -sf /Users/kevinotoole/repos/PreForm/cmake-build-relwithdebinfo/app/PreFormServer/output/PreFormServer.app/Contents/MacOS/PreFormServer ~/repos/PreForm/app/PreFormServer/libraries'
 
 # alias gr='gradle'
 # alias grst='gradle start && terminal-notifier -title "Success" -message "Build complete" || terminal-notifier -title "Build failed" -message ""'
@@ -920,9 +926,9 @@ export ENABLE_THUMBNAIL_SERVICE=1
 # export 
 export JAVA_MAX_MEMORY_MB=4096
 export VIRTUAL_ENV_DISABLE_PROMPT=1
-export SYSTEMTEST_WORKSPACE="~/systemtests-workspace"
-export SYSTEMTEST_HEADLESS_EXE="/Users/kevin.otoole/repos/PreForm/cmake-build-relwithdebinfo/app/PreFormCli/output/PreFormCli.app/Contents/MacOS/PreFormCli"
-export SYSTEMTEST_PREFORMSERVER_EXE="/Users/kevin.otoole/repos/PreForm/cmake-build-relwithdebinfo/app/PreFormServer/output/PreFormServer.app/Contents/MacOS/PreFormServer"
+export SYSTEMTEST_WORKSPACE="/Users/kevinotoole/systemtests-workspace"
+export SYSTEMTEST_HEADLESS_EXE="/Users/kevinotoole/repos/PreForm/cmake-build-relwithdebinfo/app/PreFormCli/output/PreFormCli.app/Contents/MacOS/PreFormCli"
+export SYSTEMTEST_PREFORM_SERVER_EXE="/Users/kevinotoole/repos/PreForm/cmake-build-relwithdebinfo/app/PreFormServer/output/PreFormServer.app/Contents/MacOS/PreFormServer"
 export PF="~/repos/PreForm/"
 # export EXTERNAL_REPO=1
 ulimit -c unlimited
@@ -944,6 +950,7 @@ export PATH="$HOME/Library/Python/3.8/bin:$PATH"
 export PATH="$HOME/Library/Python/3.9/bin:$PATH"
 export PATH="$HOME/Library/Python/3.10/bin:$PATH"
 export PATH="$HOME/.ebcli-virtual-env/executables:$PATH"
+export PATH="$HOME/systemtests-workspace:$PATH"
 export PATH="/Applications/Sublime Text.app/Contents/SharedSupport/bin:$PATH"
 export PATH="$HOME/repos/PreForm/cmake-build-relwithdebinfo/app/PreFormCli/output:$PATH"
 export PATH="/opt/preform-build-utils/bin-python/python:$PATH"
