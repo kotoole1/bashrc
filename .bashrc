@@ -135,7 +135,7 @@ alias alogk='aws sso login --profile kotoole'
 alias cmp='cmake -DPP_QT5_DIRECTORY=~/Qt/5.15.2/clang_64 -DPP_BUILD_TYPE=testing -DCMAKE_BUILD_TYPE=Release -G Ninja ~/repos/PreForm'
 alias cmpd='cmake -DPP_QT5_DIRECTORY=~/Qt/5.15.2/clang_64 -DPP_BUILD_TYPE=testing -DCMAKE_BUILD_TYPE=Debug -G Ninja ~/repos/PreForm'
 alias cmpr='cmake -DPP_QT5_DIRECTORY=~/Qt/5.15.2/clang_64 -DPP_BUILD_TYPE=release -DCMAKE_BUILD_TYPE=Release -G Ninja ~/repos/PreForm'
-alias nl='cd ~/repos/PreForm/cmake-build-relwithdebinfo; ninja linter_check_all; cd -'
+alias nl='cd ~/repos/PreForm/cmake-build-relwithdebinfo; ninja linter_check_all && py cmake/scripts/confirm_no_machine_specific_strings.py lib && terminal-notifier -title "Linting passed" -message "" || terminal-notifier -title "Linting failed" -message ""; cd -'
 alias nt='cd ~/repos/PreForm/cmake-build-relwithdebinfo; ninja test; cd -'
 
 alias unlockconan='~/repos/PreForm/cmake-build-relwithdebinfo/conan_wrapper.sh remove --locks; ~/repos/PreForm/cmake-build-release/conan_wrapper.sh remove --locks; ~/repos/PreForm/cmake-build-debug/conan_wrapper.sh remove --locks; ~/repos/PreForm/build/conan_wrapper.sh remove --locks;'
